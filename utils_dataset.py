@@ -160,12 +160,12 @@ def format_atc(entry):
     )
 
     input_text = (
-        f"\n\n### {"UAV Pilot:\n" if "AAL" in entry["request"]["from_entity"] else "ATC:\n"}"
+        f"\n\n### {"UAV Pilot:\n" if entry["request"]["from_entity"] == entry["callsign"] else "ATC:\n"}"
         f"{entry["request"]["text"]}"
     )
 
     '''response_text = (
-        f"\n\n### {"UAV Pilot:\n" if "AAL" in entry["response"]["from_entity"] else "ATC:\n"}"
+        f"\n\n### {"UAV Pilot:\n" if entry["response"]["from_entity"] == entry["callsign"] else "ATC:\n"}"
         f"{entry["response"]["text"]}"
     )'''
     
@@ -201,7 +201,7 @@ class AtcDataset(Dataset):
         for entry in data:
             instruction_plus_input = format_atc(entry)
             response_text = (
-              f"\n\n### {"UAV Pilot:\n" if "AAL" in entry["response"]["from_entity"] else "ATC:\n"}"
+              f"\n\n### {"UAV Pilot:\n" if entry["response"]["from_entity"] == entry["callsign"] else "ATC:\n"}"
               f"{entry["response"]["text"]}"
             )
             full_text = instruction_plus_input + response_text
@@ -257,6 +257,56 @@ def custom_collate_fn(
     targets_tensor = torch.stack(targets_lst).to(device)
 
     return inputs_tensor, targets_tensor
+
+
+def custom_collate_fn_grammar(
+    batch,
+    pad_token_id=50256,
+    ignore_index=-100,
+    allowed_max_length=None,
+    device="cpu"
+):
+    # Find the longest sequence in the batch
+    batch_max_length = max(len(item)+1 for item in batch)
+
+    # Pad and prepare inputs, targets, AND c_masks
+    inputs_lst, targets_lst, c_masks_lst = [], [], []
+
+    for item in batch:
+        new_item = item.copy()
+        # Add an <|endoftext|> token
+        new_item += [pad_token_id]
+        # Pad sequences to max_length
+        padded = new_item + [pad_token_id] * (batch_max_length - len(new_item))
+        inputs = torch.tensor(padded[:-1])  # Truncate the last token for inputs
+        targets = torch.tensor(padded[1:])  # Shift +1 to the right for targets
+
+        # Replace all but the first padding tokens in targets by ignore_index
+        mask = targets == pad_token_id
+        indices = torch.nonzero(mask).squeeze()
+        if indices.numel() > 1:
+            targets[indices[1:]] = ignore_index
+
+        # Optionally truncate to maximum sequence length
+        if allowed_max_length is not None:
+            inputs = inputs[:allowed_max_length]
+            targets = targets[:allowed_max_length]
+
+        # ---- BUILD C_MASK: 1 where targets != ignore_index, 0 elsewhere ----
+        c_mask = torch.ones_like(targets, dtype=torch.float32)
+        c_mask[targets == ignore_index] = 0.0
+
+        inputs_lst.append(inputs)
+        targets_lst.append(targets)
+        c_masks_lst.append(c_mask)
+
+    # Stack and move to device
+    inputs_tensor  = torch.stack(inputs_lst).to(device)   # [B, T]
+    targets_tensor = torch.stack(targets_lst).to(device)  # [B, T]  
+    c_mask_tensor  = torch.stack(c_masks_lst).to(device)  # [B, T]
+
+    return inputs_tensor, targets_tensor, c_mask_tensor
+
 
 
 def download_and_load_file(file_path, url):

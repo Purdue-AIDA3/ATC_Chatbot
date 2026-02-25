@@ -19,6 +19,42 @@ def calc_loss_batch(input_batch, target_batch, model, device):
     return loss
 
 
+def calc_loss_batch_grammar(input_batch,
+                            target_batch,
+                            c_mask_batch,
+                            model,
+                            device,
+                            V_ATC_ids,
+                            lambda_vocab: float = 0.1):
+    input_batch  = input_batch.to(device)
+    target_batch = target_batch.to(device)
+    c_mask_batch = c_mask_batch.to(device)
+    V_ATC_ids    = V_ATC_ids.to(device)
+
+    logits = model(input_batch)                # [B, T, V]
+    B, T, V = logits.shape
+
+    # 1) Standard CLM term
+    clm_loss = torch.nn.functional.cross_entropy(
+        logits.flatten(0, 1),
+        target_batch.flatten()
+    )
+
+    # 2) Grammar-informed vocab term
+    log_probs = torch.nn.functional.log_softmax(logits, dim=-1)          # [B, T, V]
+    log_probs_ATC = log_probs.index_select(dim=-1, index=V_ATC_ids)
+    log_P_ATC = torch.logsumexp(log_probs_ATC, dim=-1) # [B, T]
+
+    constrained_count = c_mask_batch.sum()
+    if constrained_count > 0:
+        vocab_loss = -(c_mask_batch * log_P_ATC).sum() / constrained_count
+    else:
+        vocab_loss = torch.tensor(0.0, device=device)
+
+    total_loss = clm_loss + lambda_vocab * vocab_loss
+    return total_loss
+
+
 '''def calc_loss_batch(input_batch, target_batch, model, device):
     input_batch, target_batch = input_batch.to(device), target_batch.to(device)
     logits = model(input_batch)[:, -1, :]  # Logits of last output token
@@ -43,6 +79,39 @@ def calc_loss_loader(data_loader, model, device, num_batches=None):
     return total_loss / num_batches
 
 
+def calc_loss_loader_grammar(data_loader, model, device, V_ATC_ids=None, lambda_vocab=0.0, num_batches=None):
+    """
+    Compute average loss over loader.
+    If V_ATC_ids is provided, uses grammar-informed loss.
+    """
+    total_loss = 0.
+    if len(data_loader) == 0:
+        return float("nan")
+    
+    num_batches = min(num_batches or len(data_loader), len(data_loader))
+    
+    for i, batch_data in enumerate(data_loader):
+        if i >= num_batches:
+            break
+            
+        if V_ATC_ids is not None and len(batch_data) == 3:
+            # Grammar mode: (inputs, targets, c_mask)
+            input_batch, target_batch, c_mask_batch = [x.to(device) for x in batch_data]
+            loss = calc_loss_batch_grammar(  # your grammar loss fn
+                input_batch, target_batch, c_mask_batch, 
+                model, device, V_ATC_ids, lambda_vocab
+            )
+        else:
+            # Pure CLM mode: (inputs, targets)
+            input_batch, target_batch = [x.to(device) for x in batch_data[:2]]
+            loss = calc_loss_batch(input_batch, target_batch, model, device)
+            
+        total_loss += loss.item()
+    
+    return total_loss / num_batches
+
+
+
 
 def evaluate_model(model, train_loader, val_loader, device, eval_iter):
     model.eval()
@@ -52,6 +121,18 @@ def evaluate_model(model, train_loader, val_loader, device, eval_iter):
     model.train()
     return train_loss, val_loss
 
+
+def evaluate_model_grammar(model, train_loader, val_loader, device, eval_iter, V_ATC_ids=None, lambda_vocab=0.0):
+    model.eval()
+    with torch.no_grad():
+        #train_loss = calc_loss_loader_grammar(train_loader, model, device, num_batches=eval_iter)
+        #val_loss = calc_loss_loader_grammar(val_loader, model, device, num_batches=eval_iter)
+
+        train_loss = calc_loss_loader_grammar(train_loader, model, device, V_ATC_ids=V_ATC_ids, lambda_vocab=lambda_vocab, num_batches=eval_iter)
+        val_loss = calc_loss_loader_grammar(val_loader, model, device, V_ATC_ids=V_ATC_ids, lambda_vocab=lambda_vocab, num_batches=eval_iter)
+
+    model.train()
+    return train_loss, val_loss
 
 
 def generate_text_simple(model, idx, max_new_tokens, context_size):
@@ -133,6 +214,55 @@ def train_model_simple(model, train_loader, val_loader, optimizer, device, num_e
 
     return train_losses, val_losses, track_tokens_seen
 
+
+
+# Train Grammar informed Model
+def train_model_simple_with_grammar(model, train_loader, val_loader, optimizer, device, num_epochs,
+                       eval_freq, eval_iter, start_context, tokenizer,
+                       use_grammar_loss=True, V_ATC_ids=None, lambda_vocab=0.1):
+    train_losses, val_losses, track_tokens_seen = [], [], []
+    tokens_seen = 0
+    global_step = -1
+
+    for epoch in range(num_epochs):
+        model.train()
+        for batch in train_loader:
+            optimizer.zero_grad()
+
+            if use_grammar_loss:
+                input_batch, target_batch, c_mask_batch = batch
+                loss = calc_loss_batch_grammar(
+                    input_batch, target_batch, c_mask_batch,
+                    model, device, V_ATC_ids, lambda_vocab=lambda_vocab
+                )
+            else:
+                input_batch, target_batch = batch
+                loss = calc_loss_batch(
+                    input_batch, target_batch, model, device
+                )
+
+            loss.backward()
+            optimizer.step()
+
+            tokens_seen += input_batch.numel()
+            global_step += 1
+            # ... evaluation + logging unchanged ...
+            # Optional evaluation step
+            if global_step % eval_freq == 0:
+                train_loss, val_loss = evaluate_model_grammar(
+                    model, train_loader, val_loader, device, eval_iter, V_ATC_ids=V_ATC_ids, lambda_vocab=lambda_vocab)
+                train_losses.append(train_loss)
+                val_losses.append(val_loss)
+                track_tokens_seen.append(tokens_seen)
+                print(f"Ep {epoch+1} (Step {global_step:06d}): "
+                      f"Train loss {train_loss:.3f}, Val loss {val_loss:.3f}")
+
+        # Print a sample text after each epoch
+        generate_and_print_sample(
+            model, tokenizer, device, start_context
+        )
+
+    return train_losses, val_losses, track_tokens_seen
 
 
 def plot_losses(epochs_seen, tokens_seen, train_losses, val_losses, model_size):

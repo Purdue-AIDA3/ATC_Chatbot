@@ -76,7 +76,8 @@ def main(test_mode=False):
     # Write the combined atc_data into a file
     with open(combined_file_path, "w") as file:
         json.dump(combined_atc_data, file, indent=4)  # "indent" for pretty-printing
-    print(f"Combined atc data saved as {file_path}")
+    print(f"Combined atc data saved as {combined_file_path}")
+
     '''
 
     # LOAD DATA FROM FILE
@@ -91,13 +92,6 @@ def main(test_mode=False):
     train_data = data[:train_portion]
     test_data = data[train_portion:train_portion + test_portion]
     val_data = data[train_portion + test_portion:]
-
-    # Save test_data into a file
-    test_atc_file = "test_atc_dialogues.json"
-    test_atc_data = test_data
-    with open(test_atc_file, "w") as file:
-        json.dump(test_atc_data, file, indent=4)  # "indent" for pretty-printing
-    print(f"Test atc data saved as {test_atc_file}")
 
     # Use very small subset for testing purposes
     if test_mode:
@@ -115,7 +109,7 @@ def main(test_mode=False):
     print("Device:", device)
     print(50*"-")
 
-    customized_collate_fn = partial(custom_collate_fn, device=device, allowed_max_length=1024)
+    customized_collate_fn_grammar = partial(custom_collate_fn_grammar, device=device, allowed_max_length=1024)
 
     num_workers = 0
     batch_size = 8
@@ -126,7 +120,7 @@ def main(test_mode=False):
     train_loader = DataLoader(
         train_dataset,
         batch_size=batch_size,
-        collate_fn=customized_collate_fn,
+        collate_fn=customized_collate_fn_grammar,
         shuffle=True,
         drop_last=True,
         num_workers=num_workers
@@ -136,7 +130,7 @@ def main(test_mode=False):
     val_loader = DataLoader(
         val_dataset,
         batch_size=batch_size,
-        collate_fn=customized_collate_fn,
+        collate_fn=customized_collate_fn_grammar,
         shuffle=False,
         drop_last=False,
         num_workers=num_workers
@@ -199,13 +193,31 @@ def main(test_mode=False):
     #######################################
     # Finetuning the model
     #######################################
+    # Load the saved tensor of valid ATC vocabulary (token ids)
+    V_ATC_ids = torch.load("V_ATC_ids.pt")
+    
     print("Initial losses")
+
+    # Pure CLM baseline (if you have a 2-tensor collate loader)
+    # train_loss = calc_loss_loader(train_loader, model, device, num_batches=5)
+
+    # Grammar-aware losses (new 3-tensor collate)
     with torch.no_grad():
-        train_loss = calc_loss_loader(train_loader, model, device, num_batches=5)
-        val_loss = calc_loss_loader(val_loader, model, device, num_batches=5)
+        V_ATC_ids_dev = V_ATC_ids.to(device)
+        train_loss = calc_loss_loader_grammar(
+            train_loader, model, device, 
+            V_ATC_ids=V_ATC_ids_dev, lambda_vocab=0.1,  # or your lambda
+            num_batches=5
+        )
+        val_loss = calc_loss_loader_grammar(
+            val_loader, model, device, 
+            V_ATC_ids=V_ATC_ids_dev, lambda_vocab=0.1,
+            num_batches=5
+        )
 
     print("   Training loss:", train_loss)
     print("   Validation loss:", val_loss)
+
 
     start_time = time.time()
     optimizer = torch.optim.AdamW(model.parameters(), lr=0.00005, weight_decay=0.1)
@@ -213,10 +225,11 @@ def main(test_mode=False):
     num_epochs = 5 #2
 
     torch.manual_seed(123)
-    train_losses, val_losses, tokens_seen = train_model_simple(
+    train_losses, val_losses, tokens_seen = train_model_simple_with_grammar(
         model, train_loader, val_loader, optimizer, device,
         num_epochs=num_epochs, eval_freq=5, eval_iter=5,
-        start_context=format_atc(val_data[0]), tokenizer=tokenizer
+        start_context=format_atc(val_data[0]), tokenizer=tokenizer,
+        use_grammar_loss=True, V_ATC_ids=V_ATC_ids, lambda_vocab=0.1
     )
 
     end_time = time.time()
@@ -248,12 +261,12 @@ def main(test_mode=False):
 
         test_data[i]["model_response"] = response_text
 
-    test_data_path = f"atc-test-data-with-response-clm-loss{re.sub(r'[ ()]', '', CHOOSE_MODEL) }.json"
+    test_data_path = f"atc-test-data-with-response-grammar-loss{re.sub(r'[ ()]', '', CHOOSE_MODEL) }.json"
     with open(test_data_path, "w") as file:
         json.dump(test_data, file, indent=4)  # "indent" for pretty-printing
     print(f"Responses saved as {test_data_path}")
 
-    file_name = f"{re.sub(r'[ ()]', '', CHOOSE_MODEL) }-atc-clm-loss.pth"
+    file_name = f"{re.sub(r'[ ()]', '', CHOOSE_MODEL) }-atc-with-grammar-loss.pth"
     torch.save(model.state_dict(), file_name)
     print(f"Model saved as {file_name}")
     print(model)
@@ -264,7 +277,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Finetune a GPT model for atc dialogue"
+        description="Finetune a GPT model for atc dialogue with grammar-informed loss"
     )
     parser.add_argument(
         "--test_mode",
