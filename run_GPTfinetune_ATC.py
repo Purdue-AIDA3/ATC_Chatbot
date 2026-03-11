@@ -1,5 +1,5 @@
 from utils_libs import *
-from utils_dataset import *
+from utils_dataset_gpt import *
 from utils_models import *
 from utils_methods import *
 
@@ -196,6 +196,15 @@ def main(test_mode=False):
     print("Loaded model:", CHOOSE_MODEL)
     print(50*"-")
 
+
+    ########################################################################
+    # Before Finetuning the causal model, save checkpoint for original model
+    ########################################################################
+    file_name = f"{re.sub(r'[ ()]', '', CHOOSE_MODEL) }-atc-gpt2-clm-original-model.pth"
+    torch.save(model.state_dict(), file_name)
+    print(f"Original Model before finetuning saved as {file_name}")
+
+
     #######################################
     # Finetuning the model
     #######################################
@@ -225,7 +234,17 @@ def main(test_mode=False):
 
     epochs_tensor = torch.linspace(0, num_epochs, len(train_losses))
     model_size = f"{re.sub(r'[ ()]', '', CHOOSE_MODEL) }"
-    plot_losses(epochs_tensor, tokens_seen, train_losses, val_losses, model_size)
+    plot_losses(epochs_tensor, tokens_seen, train_losses, val_losses, model_size + "causal-loss")
+    
+    
+    # Save Losses data in file
+    loss_data_path = f"loss-data-gpt2-clm-loss{re.sub(r'[ ()]', '', CHOOSE_MODEL) }.json"
+    loss_data = num_epochs, tokens_seen, train_losses, val_losses, model_size + "clm-loss", execution_time_minutes
+    with open(loss_data_path, "w") as file:
+        json.dump(loss_data, file, indent=4)  # "indent" for pretty-printing
+    print(f"Loss data saved as {loss_data_path}")
+    
+    
     print(50*"-")
 
     #######################################

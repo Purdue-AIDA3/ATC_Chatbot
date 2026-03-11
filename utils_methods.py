@@ -135,7 +135,7 @@ def evaluate_model_grammar(model, train_loader, val_loader, device, eval_iter, V
     return train_loss, val_loss
 
 
-def generate_text_simple(model, idx, max_new_tokens, context_size):
+def generate_text_simple(model, idx, max_new_tokens, context_size, repetition_penalty=1.2):
     # idx is (B, T) array of indices in the current context
     for _ in range(max_new_tokens):
 
@@ -152,6 +152,17 @@ def generate_text_simple(model, idx, max_new_tokens, context_size):
         # (batch, n_token, vocab_size) becomes (batch, vocab_size)
         logits = logits[:, -1, :]
 
+        # --- REPETITION PENALTY LOGIC ---
+        for i in range(logits.shape[0]):  # Batch loop
+            # Find unique tokens already in the sequence for this batch item
+            for token_id in set(idx[i].tolist()):
+                # If logit is positive, divide to reduce it; if negative, multiply to make more negative
+                if logits[i, token_id] > 0:
+                    logits[i, token_id] /= repetition_penalty
+                else:
+                    logits[i, token_id] *= repetition_penalty
+        # --------------------------------
+
         # Get the idx of the vocab entry with the highest logits value
         idx_next = torch.argmax(logits, dim=-1, keepdim=True)  # (batch, 1)
 
@@ -164,7 +175,15 @@ def generate_text_simple(model, idx, max_new_tokens, context_size):
 
 def generate_and_print_sample(model, tokenizer, device, start_context):
     model.eval()
-    context_size = model.pos_emb.weight.shape[0]
+
+    # Safely check if pos_emb exists; default to None if it doesn't
+    pos_emb = getattr(model, "pos_emb", None)
+
+    # Use config instead of non-existent pos_emb
+    if pos_emb is None:
+        context_size = model.cfg["context_length"] 
+    else:
+        context_size = model.pos_emb.weight.shape[0]
     encoded = text_to_token_ids(start_context, tokenizer).to(device)
     with torch.no_grad():
         token_ids = generate_text_simple(
@@ -268,6 +287,9 @@ def train_model_simple_with_grammar(model, train_loader, val_loader, optimizer, 
 def plot_losses(epochs_seen, tokens_seen, train_losses, val_losses, model_size):
     fig, ax1 = plt.subplots(figsize=(12, 6))
 
+    # Add the title
+    ax1.set_title(f"Training and Validation Loss for Model {model_size}")
+
     # Plot training and validation loss against epochs
     ax1.plot(epochs_seen, train_losses, label="Training loss")
     ax1.plot(epochs_seen, val_losses, linestyle="-.", label="Validation loss")
@@ -369,8 +391,8 @@ def plot_values(epochs_seen, examples_seen, train_values, val_values, label="los
     plt.show()
 
 
-# GENERATE USING OPEN WEIGHTS FROM GPT-2
-def generate(model, idx, max_new_tokens, context_size, temperature=0.0, top_k=None, eos_id=None):
+# GENERATE USING OPEN WEIGHTS FROM GPT-2/ or other MODELS like LLAMA
+def generate(model, idx, max_new_tokens, context_size, temperature=0.0, top_k=None, eos_id=None, repetition_penalty=1.2):
 
     # For-loop is the same as before: Get logits, and only focus on last time step
     for _ in range(max_new_tokens):
@@ -378,6 +400,18 @@ def generate(model, idx, max_new_tokens, context_size, temperature=0.0, top_k=No
         with torch.no_grad():
             logits = model(idx_cond)
         logits = logits[:, -1, :]
+
+        # --- REPETITION PENALTY LOGIC ---
+        for i in range(logits.shape[0]):  # Batch loop
+            # Find unique tokens already in the sequence for this batch item
+            for token_id in set(idx[i].tolist()):
+                # If logit is positive, divide to reduce it; if negative, multiply to make more negative
+                if logits[i, token_id] > 0:
+                    logits[i, token_id] /= repetition_penalty
+                else:
+                    logits[i, token_id] *= repetition_penalty
+        # --------------------------------
+
 
         # New: Filter logits with top_k sampling
         if top_k is not None:
