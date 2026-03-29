@@ -152,7 +152,7 @@ def generate_text_simple(model, idx, max_new_tokens, context_size, repetition_pe
         # (batch, n_token, vocab_size) becomes (batch, vocab_size)
         logits = logits[:, -1, :]
 
-        # --- REPETITION PENALTY LOGIC ---
+        '''# --- REPETITION PENALTY LOGIC ---
         for i in range(logits.shape[0]):  # Batch loop
             # Find unique tokens already in the sequence for this batch item
             for token_id in set(idx[i].tolist()):
@@ -161,7 +161,7 @@ def generate_text_simple(model, idx, max_new_tokens, context_size, repetition_pe
                     logits[i, token_id] /= repetition_penalty
                 else:
                     logits[i, token_id] *= repetition_penalty
-        # --------------------------------
+        # --------------------------------'''
 
         # Get the idx of the vocab entry with the highest logits value
         idx_next = torch.argmax(logits, dim=-1, keepdim=True)  # (batch, 1)
@@ -175,15 +175,16 @@ def generate_text_simple(model, idx, max_new_tokens, context_size, repetition_pe
 
 def generate_and_print_sample(model, tokenizer, device, start_context):
     model.eval()
+    context_size = model.pos_emb.weight.shape[0]
 
-    # Safely check if pos_emb exists; default to None if it doesn't
+    '''# Safely check if pos_emb exists; default to None if it doesn't
     pos_emb = getattr(model, "pos_emb", None)
 
     # Use config instead of non-existent pos_emb
     if pos_emb is None:
         context_size = model.cfg["context_length"] 
     else:
-        context_size = model.pos_emb.weight.shape[0]
+        context_size = model.pos_emb.weight.shape[0]'''
     encoded = text_to_token_ids(start_context, tokenizer).to(device)
     with torch.no_grad():
         token_ids = generate_text_simple(
@@ -401,7 +402,7 @@ def generate(model, idx, max_new_tokens, context_size, temperature=0.0, top_k=No
             logits = model(idx_cond)
         logits = logits[:, -1, :]
 
-        # --- REPETITION PENALTY LOGIC ---
+        '''# --- REPETITION PENALTY LOGIC ---
         for i in range(logits.shape[0]):  # Batch loop
             # Find unique tokens already in the sequence for this batch item
             for token_id in set(idx[i].tolist()):
@@ -410,7 +411,7 @@ def generate(model, idx, max_new_tokens, context_size, temperature=0.0, top_k=No
                     logits[i, token_id] /= repetition_penalty
                 else:
                     logits[i, token_id] *= repetition_penalty
-        # --------------------------------
+        # --------------------------------'''
 
 
         # New: Filter logits with top_k sampling

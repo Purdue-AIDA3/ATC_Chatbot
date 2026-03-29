@@ -45,13 +45,13 @@ Replace `[MODEL]` with `GPT`, `LLAMA`, or `QWEN` in the filenames as needed.
 **Standard fine-tuning:**
 
 ```bash
-python run_[MODEL]finetune_ATC.py
+python train/run_[MODEL]finetune_ATC.py
 ```
 
 **Grammar-informed fine-tuning:**
 
 ```bash
-python run_[MODEL]finetune_with_Grammar_ATC.py
+python train/run_[MODEL]finetune_with_Grammar_ATC.py
 ```
 
 ### Evaluation
@@ -59,7 +59,7 @@ python run_[MODEL]finetune_with_Grammar_ATC.py
 To run the evaluation suite and generate metrics for a specific model (e.g., GPT):
 
 ```bash
-python utils_evals_GPT.py
+python utils/utils_evals_GPT.py
 ```
 
 ---
@@ -86,19 +86,19 @@ The table below summarizes model performance on the ATC Corpus. *Grammar* rows r
 
 **BERTScore**
 
-![BERTScore comparison across models and training variants](assets/bertscore.svg)
+![BERTScore comparison across models and training variants](docs/bertscore.svg)
 
 **Semantic Similarity**
 
-![Semantic similarity comparison across models and training variants](assets/semantic_similarity.svg)
+![Semantic similarity comparison across models and training variants](docs/semantic_similarity.svg)
 
 **ATC Token Compliance**
 
-![ATC token compliance comparison across models and training variants](assets/atc_compliance.svg)
+![ATC token compliance comparison across models and training variants](docs/atc_compliance.svg)
 
 > To regenerate these charts after updating results, run:
 > ```bash
-> python generate_charts.py
+> python docs/generate_charts.py
 > ```
 
 ### Key Findings
@@ -117,11 +117,11 @@ The table below summarizes model performance on the ATC Corpus. *Grammar* rows r
 
 | File / Directory | Description |
 |---|---|
-| `generate_charts.py` | Regenerates SVG result charts into `assets/` |
-| `run_[MODEL]finetune_ATC.py` | Scripts for standard supervised fine-tuning |
-| `run_[MODEL]finetune_with_Grammar_ATC.py` | Scripts incorporating aviation grammar constraints |
-| `utils_evals_[MODEL].py` | Evaluation scripts for calculating metrics |
-| `assets/` | Generated SVG charts referenced by this README |
+| `docs/generate_charts.py` | Regenerates SVG result charts into `assets/` |
+| `train/run_[MODEL]finetune_ATC.py` | Scripts for standard supervised fine-tuning |
+| `train/run_[MODEL]finetune_with_Grammar_ATC.py` | Scripts incorporating aviation grammar constraints |
+| `utils/utils_evals_[MODEL].py` | Evaluation scripts for calculating metrics |
+| `docs/` | Generated SVG charts referenced by this README |
 | `data/` | Directory for the ATC Corpus dataset |
 
 ---

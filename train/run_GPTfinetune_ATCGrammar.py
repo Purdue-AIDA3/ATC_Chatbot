@@ -194,7 +194,7 @@ def main(test_mode=False):
     # Finetuning the model
     #######################################
     # Load the saved tensor of valid ATC vocabulary (token ids)
-    V_ATC_ids = torch.load("V_ATC_ids.pt")
+    V_ATC_ids = torch.load("V_ATC_ids_gpt2.pt")
     
     print("Initial losses")
 
