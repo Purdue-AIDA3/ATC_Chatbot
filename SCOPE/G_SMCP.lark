@@ -1,0 +1,199 @@
+// G_SMCP_v1.lark — SMCP Grammar for SCOPE maritime experiment
+// Based on IMO Standard Marine Communication Phrases (Resolution A.918(22), 2001)
+// Parallel structure to G_ATC_v2.lark
+
+start: utterance
+
+utterance: callsign_phrase WS body
+         | body
+
+callsign_phrase: vessel_name
+               | "THIS" WS "IS" WS vessel_name
+
+vessel_name: WORD (WS WORD)*
+
+body: distress_msg
+    | urgency_msg
+    | safety_msg
+    | nav_msg
+    | ops_msg
+    | port_msg
+    | tug_msg
+    | weather_msg
+    | response_msg
+    | general_smcp
+
+// ── Priority signals ────────────────────────────────────────────────────────
+
+distress_msg: "MAYDAY" WS "MAYDAY" WS "MAYDAY"
+            | "MAYDAY" WS vessel_name WS distress_body
+
+distress_body: "POSITION" WS position_spec (WS nav_detail)*
+             | position_spec (WS nav_detail)*
+
+urgency_msg: "PAN" WS "PAN" WS "PAN" WS "PAN" WS "PAN" WS "PAN"
+           | "PAN" WS "PAN" (WS urgency_body)?
+
+urgency_body: vessel_name WS urgency_detail
+urgency_detail: "REQUIRE" WS ("ASSISTANCE" | "MEDICAL" WS "ASSISTANCE" | "TOWAGE")
+              | "PERSON" WS "OVERBOARD"
+
+safety_msg: "SECURITE" WS "SECURITE" WS "SECURITE"
+          | "SECURITE" (WS safety_body)?
+
+safety_body: vessel_name (WS nav_warning)?
+
+// ── Navigation messages ─────────────────────────────────────────────────────
+
+nav_msg: position_report
+       | speed_instr
+       | course_instr
+       | passing_instr
+       | traffic_msg
+       | nav_warning
+
+position_report: ("MY" WS)? "POSITION" WS "IS" WS position_spec (WS nav_detail)*
+               | "POSITION" WS position_spec
+
+position_spec: lat_lon_spec
+             | bearing_dist_spec
+             | named_pos
+
+lat_lon_spec: cardinal_lat number "DEGREES" WS cardinal_lon number "DEGREES"
+
+cardinal_lat: "NORTH" | "SOUTH"
+cardinal_lon: "EAST" | "WEST"
+
+bearing_dist_spec: "BEARING" WS number WS "DEGREES" WS "DISTANCE" WS number WS ("MILES" | "NAUTICAL" WS "MILES" | "CABLES")
+                 | number WS "DEGREES" WS number WS ("MILES" | "NAUTICAL" WS "MILES" | "CABLES") WS "FROM" WS named_pos
+
+named_pos: WORD (WS WORD)*
+
+nav_detail: course_detail | speed_detail
+course_detail: "COURSE" WS number WS "DEGREES"
+speed_detail: "SPEED" WS number WS "KNOTS"
+
+speed_instr: speed_verb WS "SPEED" WS "TO" WS number WS "KNOTS"
+           | speed_verb WS "SPEED"
+           | "STOP" WS "ENGINES"
+           | engine_order
+
+speed_verb: "REDUCE" | "INCREASE" | "MAINTAIN"
+
+engine_order: ("DEAD" | "SLOW" | "HALF" | "FULL") WS ("AHEAD" | "ASTERN")
+            | "STOP"
+
+course_instr: "ALTER" WS "COURSE" WS "TO" WS number WS "DEGREES"
+            | "STEER" WS number WS "DEGREES"
+            | "MAINTAIN" WS "COURSE" WS number WS "DEGREES"
+            | "MAINTAIN" WS "PRESENT" WS "COURSE"
+
+passing_instr: "PASS" WS ("PORT" | "STARBOARD") WS "TO" WS ("PORT" | "STARBOARD")
+             | "KEEP" WS ("CLEAR" | "AWAY")
+             | "GIVE" WS "WAY"
+             | "STAND" WS "ON"
+             | "AVOID" WS ("COLLISION" | "OVERTAKING")
+
+traffic_msg: "TRAFFIC" WS "SEPARATION" WS "SCHEME" (WS WORD)?
+           | "VESSEL" WS "APPROACHING" (WS position_spec)?
+
+nav_warning: "WARNING" WS nav_hazard
+           | nav_hazard WS "REPORTED"
+
+nav_hazard: "DANGEROUS" WS "WRECK"
+           | "DRIFTING" WS ("MINE" | "OBJECT" | "VESSEL")
+           | "OBSTRUCTION" WS "IN" WS named_pos
+           | "VESSEL" WS "AGROUND"
+           | "SHALLOW" WS "WATER"
+
+// ── Operations messages ─────────────────────────────────────────────────────
+
+ops_msg: vessel_movement
+       | cargo_ops
+       | pilot_msg
+
+vessel_movement: movement_verb WS movement_dest
+
+movement_verb: "PROCEEDING" | "PROCEED" | "DEPARTING" | "ARRIVING"
+             | "ANCHORING" | "ANCHOR" | "WEIGHING" | "WEIGH"
+
+movement_dest: "TO" WS named_pos
+             | "AT" WS named_pos
+             | "FROM" WS named_pos
+
+cargo_ops: "READY" WS "TO" WS ("LOAD" | "DISCHARGE")
+         | "LOADING" | "DISCHARGING"
+         | "HATCHES" WS ("OPEN" | "CLOSED" | "SEALED")
+         | "DRAFT" WS "IS" WS number WS "METRES"
+         | "TRIM" WS trim_spec
+
+trim_spec: number WS "DEGREES" WS ("PORT" | "STARBOARD")
+         | "EVEN" WS "KEEL"
+
+pilot_msg: "PILOT" WS ("REQUIRED" | "BOARDING" | "ON" WS "BOARD" | "DISEMBARKING")
+         | "REQUEST" WS "PILOT"
+         | "PILOT" WS "BOAT" WS ("APPROACHING" | "ALONGSIDE")
+
+// ── Port messages ───────────────────────────────────────────────────────────
+
+port_msg: berth_request
+        | clearance_msg
+        | mooring_msg
+
+berth_request: "REQUEST" WS ("BERTH" | "ANCHORAGE" | "PERMISSION" WS "TO" WS "ENTER")
+             | "READY" WS "FOR" WS ("BERTHING" | "ANCHORING" | "DEPARTURE")
+
+clearance_msg: "CUSTOMS" WS ("CLEARED" | "REQUIRED" | "BOARDING")
+             | "FREE" WS "PRATIQUE" WS ("GRANTED" | "REQUESTED")
+             | "CLEARED" WS "TO" WS ("ENTER" | "DEPART" | "PROCEED")
+
+mooring_msg: "MOORING" WS ("LINES" WS)? ("FAST" | "SECURE" | "SECURED" | "READY")
+           | "GANGWAY" WS ("RIGGED" | "READY" | "SECURE")
+
+// ── Tug / Assistance ────────────────────────────────────────────────────────
+
+tug_msg: "REQUIRE" WS assistance_type
+       | "ASSISTANCE" WS ("REQUIRED" | "ON" WS "WAY")
+
+assistance_type: "TOWAGE" | "FIREFIGHTING" | "MEDICAL" WS "ASSISTANCE"
+               | "SAR" | "SALVAGE"
+
+// ── Weather reports ─────────────────────────────────────────────────────────
+
+weather_msg: wind_report | visibility_report | sea_report
+
+wind_report: "WIND" WS number WS "DEGREES" WS number WS "KNOTS"
+           | "WIND" WS cardinal_dir WS number WS "KNOTS"
+
+visibility_report: "VISIBILITY" WS number WS ("MILES" | "NAUTICAL" WS "MILES" | "METRES" | "CABLES")
+                 | "FOG" (WS "REPORTED")?
+
+sea_report: "WAVE" WS "HEIGHT" WS number WS "METRES"
+          | "SWELL" WS number WS "METRES"
+
+cardinal_dir: "NORTH" | "SOUTH" | "EAST" | "WEST"
+            | "NORTH" WS "EAST" | "NORTH" WS "WEST"
+            | "SOUTH" WS "EAST" | "SOUTH" WS "WEST"
+
+// ── Responses ───────────────────────────────────────────────────────────────
+
+response_msg: simple_response (WS response_detail)?
+
+simple_response: "WILCO" | "ROGER" | "RECEIVED" | "UNDERSTOOD"
+               | "AFFIRMATIVE" | "NEGATIVE" | "WAIT" | "STANDBY"
+
+response_detail: WORD (WS WORD)*
+
+// ── General SMCP fallback ────────────────────────────────────────────────────
+
+general_smcp: smcp_word (WS smcp_word)*
+
+smcp_word: WORD
+
+// ── Shared terminals ─────────────────────────────────────────────────────────
+
+number: DIGIT+ ("." DIGIT+)?
+
+DIGIT: "0".."9"
+WORD: ("A".."Z" | "0".."9" | "-")+
+WS: " "+

@@ -1,0 +1,281 @@
+// SCOPE ATC Grammar — G_ATC v2
+// Derived from ICAO Doc 4444 Chapter 12 and FAA JO 7110.65BB
+// Cross-referenced against LDC ATC Corpus (1,326 pairs)
+// Regulatory-first, corpus-validated construction — NeurIPS 2026
+
+start : utterance
+
+utterance : callsign_phrase " " body
+           | body
+
+// ── Body: one or more instructions, optionally preceded by facility ack ─────
+body : facility_ack " " instruction_chain    // "BOSTON APPROACH ROGER X"
+     | instruction_chain
+
+// Optional facility identification + acknowledgment before main instruction
+facility_ack : facility_name " " acknowledgment
+             | facility_name
+             | acknowledgment
+
+facility_name : /[A-Z][A-Z ]+(?:APPROACH|CENTER|TOWER|GROUND|DEPARTURE|ARRIVAL|CONTROL|RADAR)/
+              | "BOSTON APPROACH" | "BOSTON" | "APPROACH" | "TOWER"
+              | "GROUND" | "CENTER" | "DEPARTURE" | "ARRIVAL" | "CONTROL"
+
+acknowledgment : "ROGER" | "WILCO" | "AFFIRM" | "NEGATIVE" | "UNABLE"
+               | "GOOD AFTERNOON" | "GOOD MORNING" | "GOOD EVENING"
+               | "GOOD DAY" | "HAVE A GOOD DAY" | "HAVE A GOOD ONE"
+               | "THANK YOU" | "THANKS" | "SEE YOU"
+
+// ── Callsign: alpha-numeric OR multi-word spoken callsign ─────────────────
+callsign_phrase : alpha_callsign | spoken_callsign
+
+alpha_callsign : /[A-Z]{1,3}[-]?[0-9]{1,6}[A-Z]{0,3}/  // N12345, UAV007, AAL123
+
+spoken_callsign : airline_word (" " number_word)+ (" " "HEAVY")?
+                | airline_word (" " airline_word)+ (" " number_word)+ (" " "HEAVY")?
+                | alpha_callsign (" " "HEAVY")?
+
+airline_word : "AMERICAN" | "UNITED" | "DELTA" | "CONTINENTAL" | "NORTHWEST"
+             | "CLIPPER" | "SWISSAIR" | "ATLANTIC" | "CANADA" | "AIR"
+             | "LINK" | "TRUMP" | "BIZEX" | "RIPIT" | "LONER" | "MIDEX"
+             | "VIRGIN" | "ZANTOP" | "LUFTHANSA" | "SHAMROCK" | "EAGLE"
+             | "MOHAWK" | "ALLEGHENY" | "COMMUTER" | "METRO" | "NAVAJO"
+             | "GULFSTREAM" | "JET" | "US" | "TWA" | "T" | "W" | "U" | "S"
+             | "NERA" | "MIDWAY" | "WAYNE" | "SIERRA" | "NOVEMBER"
+             | "UAV" | "DRONE" | "FLIGHT" | "EXPRESS" | "SHUTTLE"
+
+// ── Instruction chain: one or more instructions joined by AND ────────────
+instruction_chain : instruction (" " ("AND" " ")? instruction)*
+
+// ── Top-level instruction types ────────────────────────────────────────────
+instruction : altitude_instr
+            | heading_instr
+            | speed_instr
+            | frequency_instr
+            | clearance_instr
+            | taxi_instr
+            | takeoff_instr
+            | approach_instr
+            | hold_instr
+            | readback_instr
+            | report_instr
+            | ident_instr
+            | traffic_info
+            | ack_only
+            | general_instr
+
+// ── Acknowledgment-only ────────────────────────────────────────────────────
+ack_only : acknowledgment
+
+// ── Level / Altitude instructions ─────────────────────────────────────────
+altitude_instr : climb_descend_instr
+               | "MAINTAIN" " " level
+               | "MAINTAIN" " " "FLIGHT LEVEL" " " fl_value
+               | "CROSS" " " waypoint " " "AT" " " level (" " "OR" " " "ABOVE")?
+               | "CROSS" " " waypoint " " level (" " "OR" " " "ABOVE")?
+               | "EXPECT" " " level
+               | "DESCEND" " " "TO" " " level
+               | "CLIMB" " " "TO" " " level
+               | "STOP" " " climb_descend " " "AT" " " level
+
+climb_descend_instr : climb_descend " " "AND" " " "MAINTAIN" " " level ("," " " report_point)?
+                    | climb_descend " " "AND" " " "MAINTAIN" " " level (", " report_point)?
+                    | climb_descend " " "AND" " " "MAINTAIN" " " "FLIGHT LEVEL" " " fl_value ("," " " report_point)?
+                    | climb_descend " " "TO" " " "AND" " " "MAINTAIN" " " level
+                    | climb_descend " " "TO" " " "REACH" " " level " " "AT" " " waypoint
+                    | "FURTHER" " " ("DESCENT" | "CLIMB") " " level
+
+climb_descend : "CLIMB" | "DESCEND" | "CLIMB AND MAINTAIN" | "DESCEND AND MAINTAIN"
+
+level : "FLIGHT LEVEL" " " fl_value
+      | altitude_value " " ("FEET" | "FT" | "METRES" | "M")
+      | altitude_value
+
+fl_value  : /[0-9]{2,3}/
+altitude_value : number_word (" " number_word)*
+               | /[0-9]{1,5}/
+
+number_word : "ZERO" | "ONE" | "TWO" | "THREE" | "FOUR" | "FIVE"
+            | "SIX" | "SEVEN" | "EIGHT" | "NINER" | "HUNDRED"
+            | "THOUSAND" | "TEN" | "ELEVEN" | "TWELVE" | "THIRTEEN"
+            | "FOURTEEN" | "FIFTEEN" | "SIXTEEN" | "SEVENTEEN"
+            | "EIGHTEEN" | "NINETEEN" | "TWENTY" | "THIRTY" | "FORTY"
+            | "FIFTY" | "SIXTY" | "SEVENTY" | "EIGHTY" | "NINETY"
+            | "OH" | "POINT" | "DECIMAL"
+
+report_point : "REPORT LEAVING" " " level
+             | "REPORT REACHING" (" " level)?
+             | "REPORT PASSING" " " level
+             | "REPORT" " " waypoint
+
+// ── Heading instructions ───────────────────────────────────────────────────
+heading_instr : "FLY HEADING" " " heading_value
+              | "FLY HEADING" " " heading_value " " ("AND" " ")? speed_instr
+              | "TURN LEFT" " " ("HEADING" " ")? heading_value
+              | "TURN RIGHT" " " ("HEADING" " ")? heading_value
+              | "TURN LEFT" " " heading_value?
+              | "TURN RIGHT" " " heading_value?
+              | "PROCEED DIRECT" " " waypoint
+              | "DIRECT" " " waypoint
+              | "FLY DIRECT" " " waypoint
+              | "INTERCEPT" " " ("THE" " ")? ("LOCALIZER" | "ILS" | "LOC") (" " runway_id)?
+              | "INTERCEPT" " " runway_id " " ("LOCALIZER" | "ILS" | "LOC")
+
+heading_value : /[0-9]{3}/
+              | number_word (" " number_word)*
+
+// ── Speed instructions ─────────────────────────────────────────────────────
+speed_instr : "REDUCE SPEED TO" " " speed_value " " speed_unit? ("OR" " " "LESS")?
+            | "INCREASE SPEED TO" " " speed_value " " speed_unit?
+            | "MAINTAIN" " " speed_value " " speed_unit?
+            | "MAINTAIN" " " speed_value " " ("KNOTS" | "KT") " " "OR" " " "GREATER"
+            | "MAINTAIN" " " speed_value " " ("KNOTS" | "KT") " " "OR" " " "LESS"
+            | "MAINTAIN" " " "A" " " speed_value " " "KNOTS" " " "OR" " " "GREATER"?
+            | "REDUCE TO MINIMUM APPROACH SPEED"
+            | "RESUME NORMAL SPEED"
+            | "MAINTAIN PRESENT SPEED"
+            | "NO SPEED RESTRICTION"
+            | "SPEED" " " speed_value " " ("TO" " " waypoint)?
+            | speed_prefix " " "SPEED" " " "TO" " " speed_value " " speed_unit?
+            | "ONE" " " speed_value " " "ON" " " "THE" " " "SPEED"?
+            | speed_value " " "ON" " " "THE" " " ("SPEED" | "AIRSPEED")
+
+speed_prefix : "REDUCE" | "INCREASE"
+speed_value  : number_word (" " number_word)*
+             | /[0-9]{2,3}/
+speed_unit   : "KNOTS" | "KT" | "KILOMETRES PER HOUR"
+
+// ── Frequency / Contact instructions ──────────────────────────────────────
+frequency_instr : "CONTACT" " " ("THE" " ")? facility_short " " frequency_value
+                | "CONTACT" " " frequency_value
+                | "FREQUENCY CHANGE APPROVED"
+                | "REMAIN THIS FREQUENCY"
+                | "MONITOR" " " ("THE" " ")? facility_short " " frequency_value
+                | "MONITOR" " " frequency_value
+
+facility_short : facility_word (" " facility_word)?
+facility_word : "TOWER" | "GROUND" | "APPROACH" | "CENTER" | "DEPARTURE"
+             | "ARRIVAL" | "CONTROL" | "RADAR" | "BOSTON" | "TRACON"
+             | "CLEARANCE" | "DELIVERY" | "ATIS" | "UNICOM"
+frequency_value : /1[0-9]{2}\.[0-9]{1,3}/
+                | number_word (" " number_word)* " " "POINT" " " number_word (" " number_word)*
+                | number_word (" " number_word)* " " "DECIMAL" " " number_word (" " number_word)*
+
+// ── Clearance instructions ─────────────────────────────────────────────────
+clearance_instr : "CLEARED TO" " " destination (" " ("VIA" " " route))?
+                | "CLEARED" " " ("FOR" " ")? ("THE" " ")? approach_type " " "APPROACH" (" " "RUNWAY" " " runway_id)?
+                | "CLEARED" " " ("FOR" " ")? ("THE" " ")? "VISUAL" (" " runway_id)?
+                | "CLEARED" " " ("FOR" " ")? ("THE" " ")? "APPROACH" (" " runway_id)?
+                | "CLEARED TO LAND" " " "RUNWAY" " " runway_id
+                | "CLEARED TO LAND"
+                | "CLEARED ILS" " " "RUNWAY" " " runway_id
+                | "CLEARED VISUAL APPROACH" " " "RUNWAY" " " runway_id
+                | "CLEARED DIRECT" " " waypoint
+                | "IFR CLEARANCE" " " destination?
+                | "RECLEARED" " " destination?
+                | "YOU" " " "RE" " " "CLEARED" " " ("FOR" " ")? ("THE" " ")? approach_type? " " "APPROACH"? (" " runway_id)?
+
+destination : /[A-Z]{3,4}/
+route : waypoint (" " waypoint)*
+waypoint : /[A-Z]{3,6}/
+approach_type : "ILS" | "LOCALIZER" | "LOC" | "VOR" | "RNAV" | "VISUAL" | "GPS" | "NDB"
+              | "I" " " "L" " " "S"    // spoken letter-by-letter
+
+// ── Taxi instructions ──────────────────────────────────────────────────────
+taxi_instr : "TAXI TO" " " location (" " "VIA" " " taxi_route)?
+           | "TAXI" " " location (" " "VIA" " " taxi_route)?
+           | "HOLD SHORT" " " ("OF" " ")? location
+           | "HOLD SHORT OF" " " location
+           | "HOLD POSITION"
+           | "CONTINUE TAXI"
+           | "EXPEDITE TAXI" (" " reason)?
+           | "TAXI INTO POSITION AND HOLD" (" " runway_id)?
+           | "PROCEED TO" " " location (" " "FOR" " " "RUNWAY" " " runway_id)?
+           | "WILL" " " "HOLD" " " "SHORT" " " "OF" " " ("YOUR" " ")? "RUNWAY"
+
+location : "RUNWAY" " " runway_id | "GATE" " " /[A-Z0-9]+/ | waypoint
+taxi_route : location (" " location)*
+runway_id : /[0-9]{1,2}[LRC]?/
+          | number_word (" " number_word)* (" " "LEFT" | " " "RIGHT" | " " "CENTER")?
+reason : /[A-Z ]+/
+
+// ── Takeoff instructions ───────────────────────────────────────────────────
+takeoff_instr : "CLEARED FOR TAKEOFF" " " "RUNWAY" " " runway_id
+              | "CLEARED FOR TAKEOFF"
+              | "LINE UP AND WAIT" " " "RUNWAY" " " runway_id
+              | "LINE UP AND WAIT"
+              | "HOLD SHORT OF RUNWAY" " " runway_id
+              | "TAKEOFF IMMEDIATELY"
+              | "CANCEL TAKEOFF CLEARANCE"
+              | "HOLD POSITION" ", " "CANCEL TAKEOFF"
+
+// ── Approach instructions ──────────────────────────────────────────────────
+approach_instr : "CLEARED" " " approach_type " " "APPROACH"
+               | "EXPECT" " " approach_type " " "APPROACH" (" " "RUNWAY" " " runway_id)?
+               | "REPORT" " " ("ESTABLISHED" | "LOCALIZER") (" " "RUNWAY" " " runway_id)?
+               | "GO AROUND" (" " missed_approach_instr)?
+               | "CONTINUE APPROACH"
+               | "CLEARED VISUAL APPROACH" " " "RUNWAY" " " runway_id
+               | number_word (" " number_word)* " " "FROM" " " waypoint " " ("INTERCEPT" " ")? ("THE" " ")? approach_type? (" " "APPROACH")? (" " runway_id)?
+
+missed_approach_instr : "CLIMB AND MAINTAIN" " " level
+                      | "FLY HEADING" " " heading_value
+
+// ── Holding instructions ───────────────────────────────────────────────────
+hold_instr : "HOLD" " " hold_direction " " "OF" " " waypoint ("," " " hold_details)?
+           | "HOLD" " " waypoint (" " hold_details)?
+           | "CLEARED TO" " " waypoint ", " "HOLD" " " hold_direction?
+           | "HOLD POSITION"
+           | "EXPECT" " " "FURTHER CLEARANCE" " " "AT" " " time_value
+
+hold_direction : "NORTH" | "SOUTH" | "EAST" | "WEST"
+               | "NORTHEAST" | "NORTHWEST" | "SOUTHEAST" | "SOUTHWEST"
+hold_details : ("LEFT" | "RIGHT") (" " "HAND" (" " "PATTERN")?)?
+time_value : /[0-9]{4}/
+
+// ── Report / Readback ──────────────────────────────────────────────────────
+report_instr : "REPORT" " " report_type
+readback_instr : "READBACK CORRECT"
+               | "WILCO" | "AFFIRM" | "NEGATIVE" | "ROGER" | "UNABLE"
+               | "STANDBY" | "SAY AGAIN" | "CORRECTION"
+
+report_type : "PASSING" " " waypoint
+            | "ESTABLISHED" (" " "ON" " " ("LOCALIZER" | "ILS"))?
+            | "VISUAL"
+            | "DOWNWIND" | "BASE" | "FINAL"
+            | "LEAVING" " " level
+            | "REACHING" " " level
+            | "RUNWAY VACATED"
+            | "FULLY ESTABLISHED"
+
+// ── IDENT ──────────────────────────────────────────────────────────────────
+ident_instr : "SQUAWK" " " squawk_code
+            | "SQUAWK IDENT" | "SQUAWK STANDBY" | "SQUAWK CHARLIE"
+            | "SQUAWK NORMAL" | "IDENT"
+            | "RADAR CONTACT" (" " position_info)?
+            | "RADAR CONTACT LOST"
+            | "STOP SQUAWK"
+
+squawk_code : /[0-7]{4}/ | number_word (" " number_word)*
+position_info : waypoint | number_word (" " number_word)*
+
+// ── Traffic information ────────────────────────────────────────────────────
+traffic_info : "TRAFFIC" " " position_clock /[ ]O'CLOCK/ (" " distance)? (" " traffic_type)? (" " action)?
+             | "NO REPORTED TRAFFIC"
+             | "TRAFFIC" " " traffic_description
+             | "TRAFFIC LANDING" " " "RUNWAY" " " runway_id (" " traffic_action)?
+             | "TRAFFIC LANDING" " " runway_id (" " traffic_action)?
+
+position_clock : number_word (" " number_word)?
+distance : number_word (" " number_word)* " " ("MILES" | "MILE" | "NM" | "KILOMETRES")?
+traffic_type : "UNKNOWN" | "VFR" | "IFR" | "MILITARY" | "HELICOPTER"
+traffic_description : /[A-Z ]+/
+traffic_action : "WILL HOLD SHORT" | "WILL SHORT" | "HOLDING SHORT"
+action : "REPORT IN SIGHT" | "PASS BEHIND" | "PASS AHEAD" | "IN SIGHT"
+
+// ── General fallback ──────────────────────────────────────────────────────
+// Used for corpus training signal even for utterances not covered above
+general_instr : word (" " word)+
+word : /[A-Z']+/
+
+%ignore /\n/

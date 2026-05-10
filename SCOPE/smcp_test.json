@@ -1,0 +1,262 @@
+[
+  {
+    "request": "IS PILOT ON BOARD",
+    "response": "PILOT ON BOARD PROCEEDING TO BERTH"
+  },
+  {
+    "request": "GIVE WAY",
+    "response": "GIVE WAY WILCO"
+  },
+  {
+    "request": "REPORT ANY HAZARDS",
+    "response": "WARNING DANGEROUS WRECK BEARING 179 DEGREES DISTANCE 3 NAUTICAL MILES"
+  },
+  {
+    "request": "WHAT IS YOUR POSITION",
+    "response": "MY POSITION IS BEARING 193 DEGREES DISTANCE 3 NAUTICAL MILES FROM YOKOHAMA"
+  },
+  {
+    "request": "SWITCH TO CHANNEL 22",
+    "response": "SWITCHING TO CHANNEL 22 WILCO"
+  },
+  {
+    "request": "STEER 115 DEGREES",
+    "response": "STEERING 115 DEGREES WILCO"
+  },
+  {
+    "request": "WHAT IS VISIBILITY",
+    "response": "VISIBILITY 5 NAUTICAL MILES"
+  },
+  {
+    "request": "STEER 202 DEGREES",
+    "response": "STEERING 202 DEGREES WILCO"
+  },
+  {
+    "request": "CONFIRM YOU HAVE RECEIVED",
+    "response": "RECEIVED WILCO"
+  },
+  {
+    "request": "STAND ON",
+    "response": "STANDING ON ROGER"
+  },
+  {
+    "request": "DO YOU UNDERSTAND",
+    "response": "UNDERSTOOD WILCO"
+  },
+  {
+    "request": "MAINTAIN PRESENT COURSE",
+    "response": "MAINTAIN PRESENT COURSE WILCO"
+  },
+  {
+    "request": "REPORT YOUR POSITION AND COURSE",
+    "response": "MY POSITION IS BEARING 216 DEGREES DISTANCE 6 NAUTICAL MILES FROM DUBAI COURSE 236 DEGREES SPEED 8 KNOTS"
+  },
+  {
+    "request": "ALTER COURSE TO 259 DEGREES",
+    "response": "ALTER COURSE TO 259 DEGREES WILCO"
+  },
+  {
+    "request": "IS PILOT ON BOARD",
+    "response": "PILOT ON BOARD PROCEEDING TO BERTH"
+  },
+  {
+    "request": "REPORT YOUR POSITION AND COURSE",
+    "response": "MY POSITION IS BEARING 326 DEGREES DISTANCE 28 NAUTICAL MILES FROM ISTANBUL COURSE 251 DEGREES SPEED 5 KNOTS"
+  },
+  {
+    "request": "DO YOU REQUIRE BERTH",
+    "response": "REQUEST BERTH AT SHANGHAI"
+  },
+  {
+    "request": "WHAT IS YOUR POSITION",
+    "response": "MY POSITION IS BEARING 288 DEGREES DISTANCE 7 NAUTICAL MILES FROM NEW YORK"
+  },
+  {
+    "request": "DO YOU REQUIRE BERTH",
+    "response": "REQUEST BERTH AT HAMBURG"
+  },
+  {
+    "request": "ALL VESSELS REDUCE SPEED TO 5 KNOTS",
+    "response": "REDUCE SPEED TO 5 KNOTS WILCO"
+  },
+  {
+    "request": "MAINTAIN PRESENT COURSE",
+    "response": "MAINTAIN PRESENT COURSE WILCO"
+  },
+  {
+    "request": "REPORT YOUR POSITION AND COURSE",
+    "response": "MY POSITION IS BEARING 65 DEGREES DISTANCE 22 NAUTICAL MILES FROM NEW YORK COURSE 281 DEGREES SPEED 6 KNOTS"
+  },
+  {
+    "request": "REPORT VESSEL MOVEMENTS",
+    "response": "VESSEL GOLDEN GATE ARRIVING AT PIRAEUS ETA 6 HOURS"
+  },
+  {
+    "request": "DO YOU REQUIRE ASSISTANCE",
+    "response": "REQUIRE ASSISTANCE MEDICAL ASSISTANCE REQUIRED"
+  },
+  {
+    "request": "REPORT SEA STATE",
+    "response": "WAVE HEIGHT 6 METRES SWELL 1 METRES"
+  },
+  {
+    "request": "MAINTAIN PRESENT COURSE",
+    "response": "MAINTAIN PRESENT COURSE WILCO"
+  },
+  {
+    "request": "ALTER COURSE TO 323 DEGREES",
+    "response": "ALTER COURSE TO 323 DEGREES WILCO"
+  },
+  {
+    "request": "WHAT IS VISIBILITY",
+    "response": "VISIBILITY 2 NAUTICAL MILES"
+  },
+  {
+    "request": "MAINTAIN SPEED 12 KNOTS",
+    "response": "MAINTAIN SPEED 12 KNOTS WILCO"
+  },
+  {
+    "request": "REPORT DRAFT",
+    "response": "DRAFT IS 15.8 METRES"
+  },
+  {
+    "request": "WHAT IS YOUR POSITION",
+    "response": "MY POSITION IS BEARING 232 DEGREES DISTANCE 12 NAUTICAL MILES FROM FELIXSTOWE"
+  },
+  {
+    "request": "DO YOU REQUIRE TOWAGE",
+    "response": "REQUIRE TOWAGE ENGINE FAILURE"
+  },
+  {
+    "request": "SECURITE SECURITE SECURITE",
+    "response": "SECURITE GOLDEN GATE NAVIGATION WARNING DANGEROUS WRECK IN CHANNEL"
+  },
+  {
+    "request": "ARE YOU READY TO LOAD",
+    "response": "READY TO LOAD HATCHES OPEN"
+  },
+  {
+    "request": "REPORT ANY HAZARDS",
+    "response": "WARNING DANGEROUS WRECK BEARING 7 DEGREES DISTANCE 2 NAUTICAL MILES"
+  },
+  {
+    "request": "ARE YOU READY FOR DEPARTURE",
+    "response": "READY FOR DEPARTURE DEPARTING TO HOUSTON"
+  },
+  {
+    "request": "ARE YOU READY TO LOAD",
+    "response": "READY TO LOAD HATCHES OPEN"
+  },
+  {
+    "request": "STOP ENGINES",
+    "response": "STOP ENGINES WILCO"
+  },
+  {
+    "request": "REPORT VESSEL MOVEMENTS",
+    "response": "VESSEL MING STAR ARRIVING AT YOKOHAMA ETA 7 HOURS"
+  },
+  {
+    "request": "ALTER COURSE TO 23 DEGREES",
+    "response": "ALTER COURSE TO 23 DEGREES WILCO"
+  },
+  {
+    "request": "REPORT SEA STATE",
+    "response": "WAVE HEIGHT 6 METRES SWELL 2 METRES"
+  },
+  {
+    "request": "PERMISSION TO ENTER PORT",
+    "response": "CLEARED TO ENTER FELIXSTOWE PROCEED TO BERTH"
+  },
+  {
+    "request": "STOP ENGINES",
+    "response": "STOP ENGINES WILCO"
+  },
+  {
+    "request": "PERMISSION TO ENTER PORT",
+    "response": "CLEARED TO ENTER HOUSTON PROCEED TO BERTH"
+  },
+  {
+    "request": "ALL VESSELS REDUCE SPEED TO 18 KNOTS",
+    "response": "REDUCE SPEED TO 18 KNOTS WILCO"
+  },
+  {
+    "request": "REPORT DRAFT",
+    "response": "DRAFT IS 9.6 METRES"
+  },
+  {
+    "request": "PERMISSION TO ENTER PORT",
+    "response": "CLEARED TO ENTER SHANGHAI PROCEED TO BERTH"
+  },
+  {
+    "request": "STAND ON",
+    "response": "STANDING ON ROGER"
+  },
+  {
+    "request": "WHAT IS YOUR POSITION",
+    "response": "MY POSITION IS BEARING 12 DEGREES DISTANCE 24 NAUTICAL MILES FROM DUBAI"
+  },
+  {
+    "request": "REPORT SEA STATE",
+    "response": "WAVE HEIGHT 4 METRES SWELL 4 METRES"
+  },
+  {
+    "request": "CONFIRM YOU HAVE RECEIVED",
+    "response": "RECEIVED WILCO"
+  },
+  {
+    "request": "IS PILOT ON BOARD",
+    "response": "PILOT ON BOARD PROCEEDING TO BERTH"
+  },
+  {
+    "request": "ARE YOU READY FOR DEPARTURE",
+    "response": "READY FOR DEPARTURE DEPARTING TO MUMBAI"
+  },
+  {
+    "request": "DO YOU REQUIRE ASSISTANCE",
+    "response": "REQUIRE ASSISTANCE MEDICAL ASSISTANCE REQUIRED"
+  },
+  {
+    "request": "SWITCH TO CHANNEL 58",
+    "response": "SWITCHING TO CHANNEL 58 WILCO"
+  },
+  {
+    "request": "STOP ENGINES",
+    "response": "STOP ENGINES WILCO"
+  },
+  {
+    "request": "ARE YOU READY FOR DEPARTURE",
+    "response": "READY FOR DEPARTURE DEPARTING TO MUMBAI"
+  },
+  {
+    "request": "DO YOU UNDERSTAND",
+    "response": "UNDERSTOOD WILCO"
+  },
+  {
+    "request": "REPORT VESSEL MOVEMENTS",
+    "response": "VESSEL SEA HAWK ARRIVING AT YOKOHAMA ETA 1 HOURS"
+  },
+  {
+    "request": "REPORT ANY HAZARDS",
+    "response": "WARNING DANGEROUS WRECK BEARING 211 DEGREES DISTANCE 1 NAUTICAL MILES"
+  },
+  {
+    "request": "VESSEL EPSILON REPORT TRAFFIC",
+    "response": "TRAFFIC SEPARATION SCHEME CLEAR PROCEEDING TO DUBAI"
+  },
+  {
+    "request": "ARE YOU READY FOR DEPARTURE",
+    "response": "READY FOR DEPARTURE DEPARTING TO BUSAN"
+  },
+  {
+    "request": "STANDBY",
+    "response": "STANDBY ROGER"
+  },
+  {
+    "request": "VESSEL IRON DUKE REPORT TRAFFIC",
+    "response": "TRAFFIC SEPARATION SCHEME CLEAR PROCEEDING TO FELIXSTOWE"
+  },
+  {
+    "request": "STOP ENGINES",
+    "response": "STOP ENGINES WILCO"
+  }
+]

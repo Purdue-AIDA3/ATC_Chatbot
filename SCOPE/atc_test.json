@@ -1,0 +1,1312 @@
+[
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "O K NO JOY IN THE HAZE",
+    "response": "DELTA TWO TEN HEAVY THANK YOU U S AIR TWELVE TWENTY SIX TURN LEFT HEADING AH THREE FIVE ZERO",
+    "callsign": "USA1226",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "other",
+    "request": "NINETEEN ONE GOOD DAY",
+    "response": "GOOD DAY",
+    "callsign": "USA141",
+    "fsm_state": "ReadbackReceived",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "ZERO TWO ZERO EIGHT ECHO LIMA",
+    "response": "GULFSTREAM EIGHT ECHO LIMA DESCEND AND MAINTAIN FOUR THOUSAND",
+    "callsign": "N8EL",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_007",
+    "exchange_type": "instruction_readback",
+    "request": "U S EIGHTY FOUR DESCEND AND MAINTAIN ONE THOUSAND SEVEN HUNDRED",
+    "response": "ONE THOUSAND SEVEN HUNDRED EIGHTY FOUR",
+    "callsign": "USA84",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "ONE NINETY TO JOIN THE LOC AND DOWN TO TWO THOUSAND THIRTEEN OH THREE",
+    "response": "MOHAWK THIRTEEN ZERO THREE FOUR MILES FROM LYNDY MAINTAIN TWO THOUSAND UNTIL ESTABLISHED ON LOCALIZER CLEARED I L S RUNWAY TWO TWO LEFT APPROACH HOLD SHORT RUNWAY TWO SEVEN",
+    "callsign": "MOW1303",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "LEFT TURN ZERO NINE ZERO U S AIR EIGHT EIGHTY FOUR",
+    "response": "U S AIR EIGHT EIGHTY FOUR YOU ARE TURNING RIGHT DIRECT TO BOSTON",
+    "callsign": "USA884",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "other",
+    "request": "RIGHT TWO FIVE ZERO INTERCEPT THE LOCALIZER AMERICAN S NINETY FOUR HEAVY",
+    "response": "AMERICAN NINETY FOUR HEAVY SIX FROM RIPIT INTERCEPT THE LOCALIZER THREE THOUSAND OR ABOVE CLEARED I L S D M E TWO SEVEN APPROACH",
+    "callsign": "AAL94",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "checkin_response",
+    "request": "APPROACH U S AIR SIX SIXTY FOUR IS WITH YOU SEVEN",
+    "response": "U S SIX SIXTY FOUR ROGER",
+    "callsign": "USA664",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "other",
+    "request": "NORTH HEADING SLOW TO TWO TEN T W A NINE OH THREE HEAVY",
+    "response": "T W A NINE OH THREE HEAVY TURN LEFT HEADING THREE THREE ZERO",
+    "callsign": "TWA903",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "OKAY SIR TRUMP TEN TWENTY WE LL KEEP THAT DESCENT GOING TO THREE THOUSAND",
+    "response": "TRUMP TEN TWENTY TURN LEFT HEADING THREE THREE ZERO REDUCE SPEED TO TWO ONE ZERO",
+    "callsign": "TPS1020",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "DOWN TO TWO BIZEX FIVE NINETY THREE",
+    "response": "BIZEX FIVE NINETY THREE REPORT THE AIRPORT IN SIGHT FOR TWO TWO LEFT",
+    "callsign": "GAA593",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "other",
+    "request": "ONE ZERO ZERO TWENTY EIGHTEEN",
+    "response": "U P S AH TWENTY EIGHTEEN HEAVY DESCEND AND MAINTAIN TWO THOUSAND TURN RIGHT HEADING ONE EIGHT ZERO",
+    "callsign": "UPS2018",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "HEADING THREE FOUR ZERO TRUMP ELEVEN TEN",
+    "response": "TRUMP ELEVEN TEN YOU RE FOUR FROM LONER TURN LEFT HEADING TWO NINER ZERO CROSS LONER AT THREE THOUSAND OR ABOVE CLEARED FOR THE I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "callsign": "TPS1110",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "HEADING ZERO ONE ZERO CLIPPER SIXTY FIVE FORTY",
+    "response": "CLIPPER SIXTY FIVE FORTY TURN LEFT HEADING THREE SIX ZERO",
+    "callsign": "PAA6540",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "instruction_readback",
+    "request": "AMERICAN ONE TWELVE HEAVY TURN RIGHT HEADING TWO AH ZERO ZERO DESCEND AND MAINTAIN THREE THOUSAND",
+    "response": "OKAY TWO ZERO ZERO ON THE HEADING DOWN TO THREE THOUSAND AMERICAN ONE TWELVE HEAVY",
+    "callsign": "AAL112",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "instruction_readback",
+    "request": "NORTHWEST ELEVEN SEVENTY EIGHT TURN LEFT HEADING THREE THREE ZERO",
+    "response": "LEFT THREE THREE ZERO ELEVEN SEVENTY EIGHT",
+    "callsign": "NWA1178",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "other",
+    "request": "EIGHT ECHO LIMA THANK YOU",
+    "response": "GULFSTREAM THREE ZERO EIGHT ECHO LIMA CONTACT THE TOWER ONE ONE NINER POINT ONE GOOD DAY",
+    "callsign": "N308EL",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "instruction_readback",
+    "request": "SKY MASTER SIXTY ONE DESCEND V F R YOUR DISCRETION ADVISE TWO TWO LEFT IN SIGHT",
+    "response": "AND SKY MASTER SIXTY ONE HAS VISUAL ON TWO TWO LEFT",
+    "callsign": "SKM61",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "instruction_readback",
+    "request": "GULFSTREAM TWO TWO ONE CHARLIE MIKE YOUR RUNWAY IS TWO SEVEN CLEARED FOR THE VISUAL APPROACH",
+    "response": "O K CLEARED FOR THE VISUAL TWO SEVEN CHARLIE MIKE",
+    "callsign": "N21CM",
+    "fsm_state": "AwaitingClearance",
+    "instruction_type": "clearance",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "other",
+    "request": "[UNINTELLIGIBLE] TWO TEN THEN DOWN TO FOUR U S AIR SIXTEEN FIFTEEN",
+    "response": "U S AIR SIXTEEN FIFTEEN TURN LEFT HEADING THREE FOUR ZERO",
+    "callsign": "USA1615",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "DELTA SEVEN FIFTY FIVE WOULD LIKE LOWER",
+    "response": "DELTA SEVEN FIFTY FIVE DESCEND AND MAINTAIN FIVE THOUSAND",
+    "callsign": "DAL755",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "HELLO APPROACH U S AIR NINETEEN TWENTY NINE CHECKING IN SIX THOUSAND",
+    "response": "U S AIR NINETEEN TWENTY NINE BOSTON APPROACH FLY HEADING THREE SIX ZERO DESCEND AND MAINTAIN THREE THOUSAND",
+    "callsign": "USA1929",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "instruction_readback",
+    "request": "NORTHWEST EIGHTEEN SEVENTY SIX FOUR FROM LONER CROSS LONER THREE OR ABOVE CLEARED I L S D M E TWO SEVEN APPROACH SPEED ONE SEVEN ZERO TO RIPIT",
+    "response": "CLEARED FOR THE APPROACH WILL COMPLY WITH THE RESTRICTIONS NORTHWEST EIGHTEEN SEVENTY SIX",
+    "callsign": "NWA1876",
+    "fsm_state": "AwaitingClearance",
+    "instruction_type": "clearance",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "instruction_readback",
+    "request": "LEAR THREE CHARLIE FOX TURN RIGHT HEADING TWO ZERO ZERO DESCEND AND MAINTAIN TWO THOUSAND",
+    "response": "TWO ZERO ZERO AND TWO THOUSAND THREE CHARLIE FOX",
+    "callsign": "N3CF",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "APPROACH CONTINENTAL FOUR FIFTY TWO LEVELING SIX THOUSAND",
+    "response": "CONTINENTAL FOUR FIFTY TWO BOSTON APPROACH THANKS FLY PRESENT HEADING",
+    "callsign": "COA452",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "ROGER",
+    "response": "AIR CANADA EIGHT TEN SPEED TWO ONE ZERO THEN DESCEND AND MAINTAIN FIVE THOUSAND",
+    "callsign": "ACA810",
+    "fsm_state": "ReadbackReceived",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_007",
+    "exchange_type": "other",
+    "request": "CLEARED A VISUAL TWO SEVEN WITH THE RESTRICTIONS U S AIR THREE SIXTY",
+    "response": "U S THREE SIXTY THE AH REASON FOR THAT HE DIDN T WANT YOU TO OVER SHOOT THE FINAL IF YOU CAN DO IT THERE IS DEPARTURE TRAFFIC OFF RUNWAY TWO TWO RIGHT THAT HAS TURNED EASTBOUND RIGHT NOW THERE S NOBODY THERE BUT AS YOU GET CLOSER IN I DIDN T WANT TO GET TO CLOSE TO EM",
+    "callsign": "USA360",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "checkin_response",
+    "request": "APPROACH U S AIR TEN TWENTY FOUR WITH YOU DESCENDING AH FIVE THOUSAND",
+    "response": "U S TEN TWENTY FOUR BOSTON APPROACH THANK YOU",
+    "callsign": "USA1024",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "APPROACH DELTA TWO OH TWO SIX THOUSAND FOR FIVE",
+    "response": "DELTA TWO ZERO TWO BOSTON APPROACH AH ROGER AT FIVE THOUSAND REDUCE SPEED TO TWO ONE ZERO",
+    "callsign": "DAL202",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "instruction_readback",
+    "request": "U S AIR TEN SIXTEEN FOUR MILES FROM LONER TURN LEFT HEADING TWO NINER ZERO CROSS LONER THREE THOUSAND OR ABOVE CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH MAINTAIN PRESENT SPEED",
+    "response": "PRESENT SPEED CLEARED FOR THE I L S [UNINTELLIGIBLE] TWO SEVEN U S AIR TEN SIXTEEN",
+    "callsign": "USA1016",
+    "fsm_state": "AwaitingClearance",
+    "instruction_type": "clearance",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "instruction_readback",
+    "request": "U S TWENTY THREE EIGHTY EIGHT TURN LEFT HEADING THREE THREE ZERO CAUTION WAKE TURBULENCE BE SEQUENCED BEHIND A HEAVY D C TEN",
+    "response": "THREE THREE ZERO U S AIR TWENTY THREE EIGHTY EIGHT",
+    "callsign": "USA2388",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "instruction_readback",
+    "request": "U S EIGHTY FOUR TURN RIGHT HEADING TWO FIVE ZERO INTERCEPT RUNWAY TWO SEVEN LOCALIZER",
+    "response": "TWO FIFTY FOR THE LOCALIZER U S AIR EIGHTY FOUR",
+    "callsign": "USA84",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "NORTHWEST TWO FIFTY EIGHT REDUCE SPEED TO TWO ONE ZERO",
+    "response": "TWO TEN TWO FIFTY EIGHT",
+    "callsign": "NWA258",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "BOSTON U S AIR ONE FORTY ONE SIX THOUSAND FORTY HEADING",
+    "response": "U S ONE FORTY ONE BOSTON APPROACH DESCEND AND MAINTAIN FOUR THOUSAND",
+    "callsign": "USA141",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "U S AIR FOURTEEN THIRTY EIGHT OUT OF SEVENTY FIVE HUNDRED FOR SIX",
+    "response": "THAT U S AIR THREE FIFTY SIX CHECKING IN",
+    "callsign": "USA1438",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "other",
+    "request": "WE LL PICK IT UP",
+    "response": "AMERICAN SEVEN THIRTY SIX TRAFFIC LANDING TWO TWO LEFT WILL SHORT OF YOUR RUNWAY CONTACT THE TOWER ONE ONE NINER POINT ONE GOOD DAY",
+    "callsign": "AAL736",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "instruction_readback",
+    "request": "BIZEX THREE TWENTY THREE REDUCE SPEED TO ONE SEVEN ZERO THEN DESCEND AND MAINTAIN TWO THOUSAND",
+    "response": "ONE SEVENTY THEN BACK TO TWO BIZEX THREE TWENTY THREE",
+    "callsign": "GAA323",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "CONTINENTAL THREE THIRTY SAY SPEED",
+    "response": "TWO HUNDRED CONTINENTAL THREE THIRTY",
+    "callsign": "COA330",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "THREE SIX ZERO NOW THREE FORTY SIX",
+    "response": "CONTINENTAL THREE FORTY SIX DESCEND AND MAINTAIN THREE THOUSAND",
+    "callsign": "COA346",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "other",
+    "request": "NINETEEN ONE GOOD NIGHT GOOD AFTERNOON",
+    "response": "DARK IN HERE",
+    "callsign": "TWA754",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "instruction_readback",
+    "request": "GULFSTREAM ONE DELTA SIERRA MAINTAIN SPEED TWO ONE ZERO OR GREATER PLEASE TURN LEFT HEADING THREE THREE ZERO",
+    "response": "SPEED TWO ONE ZERO LEFT HEADING AH WHAT WAS THE HEADING",
+    "callsign": "N11DS",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "instruction_readback",
+    "request": "TRUMP TEN THIRTY TURN LEFT HEADING TWO NINER ZERO TWO MILES FROM LONER CROSS LONER AT THREE THOUSAND AND CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "response": "OKAY TRUMP TEN THIRTY TWO NINER ZERO FOR THE AH LONER THREE THOUSAND CLEARED FOR THE I L S TWO SEVEN APPROACH",
+    "callsign": "TPS1030",
+    "fsm_state": "AwaitingClearance",
+    "instruction_type": "clearance",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "RIGHT TWO TWO ZERO T W A SEVEN FIFTY FOUR HEAVY",
+    "response": "T W A SEVEN FIFTY FOUR HEAVY TURN RIGHT HEADING TWO SIX ZERO INTERCEPT THE LOCALIZER",
+    "callsign": "TWA754",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "other",
+    "request": "HEADING THREE ZERO ZERO INTERCEPT THE LOCALIZER SIXTY FIVE FORTY",
+    "response": "CLIPPER SIXTY FIVE FORTY SEVEN MILES FROM RIPIT HEADING THREE ZERO ZERO MAINTAIN THREE THOUSAND TIL ESTABLISHED ON THE LOCALIZER CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH SPEED ONE NINETY OR GREATER TO RIPIT",
+    "callsign": "PAA6540",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "other",
+    "request": "OUT OF FOUR FOR THREE FOURTEEN THIRTY EIGHT",
+    "response": "U S AIR FOURTEEN THIRTY EIGHT TURN RIGHT HEADING TWO SIX ZERO YOU RE SEVEN MILES FROM RIPIT MAINTAIN THREE THOUSAND TIL ESTABLISHED ON THE LOCALIZER CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "callsign": "USA1438",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "other",
+    "request": "DOWN TO TWO THOUSAND AIR CANADA S EIGHT TEN",
+    "response": "AIR CANADA EIGHT TEN TURN RIGHT HEADING TWO SIX ZERO YOU RE FOUR MILES FROM RIPIT MAINTAIN TWO THOUSAND TIL ESTABLISHED ON THE LOCALIZER CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "callsign": "ACA810",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "instruction_readback",
+    "request": "GULFSTREAM ONE DELTA SIERRA DESCEND AND MAINTAIN THREE THOUSAND",
+    "response": "DESCEND AND MAINTAIN THREE THOUSAND ONE DELTA SIERRA",
+    "callsign": "N11DS",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "instruction_readback",
+    "request": "AMERICAN ONE TWELVE HEAVY TURN RIGHT HEADING ONE SEVEN ZERO",
+    "response": "ONE SEVEN ZERO AMERICAN ONE TWELVE HEAVY",
+    "callsign": "AAL112",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "checkin_response",
+    "request": "BOSTON APPROACH AH BIZEX FOUR SIXTY FIVE WITH YOU DESCENDING TO FOUR THOUSAND",
+    "response": "BIZEX FOUR SIXTY FIVE BOSTON APPROACH THANK YOU SAY HEADING",
+    "callsign": "GAA465",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "other",
+    "request": "PRECISION THIRTY FIVE SIXTY SIX V F R DESCENT TO FOUR THOUSAND IS APPROVED TRAFFIC YOUR COMPANY GOING YOUR LEFT TO RIGHT ELEVEN O CLOCK FIVE MILES JUST LEAVING FOUR THOUSAND",
+    "response": "O K WE LL BE LOOKING DOWN TO FOUR THOUSAND PRECISION THIRTY FIVE SIXTY SIX",
+    "callsign": "PCN3566",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "AH WE VE GOT THE LOCALIZER THIRTY SEVEN OH SEVEN",
+    "response": "THANK YOU",
+    "callsign": "NERA3707",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_008",
+    "exchange_type": "other",
+    "request": "DELTA FIVE EIGHTY NINE TRAFFIC LANDING RUNWAY TWO TWO LEFT WILL HOLD SHORT OF YOUR RUNWAY",
+    "response": "FIVE EIGHTY NINE",
+    "callsign": "DAL589",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_007",
+    "exchange_type": "instruction_readback",
+    "request": "U S SIX SIX FOUR IS FOUR AND ONE HALF MILES FROM AH RIPIT MAINTAIN TWO THOUSAND TILL ESTABLISHED ON THE LOCALIZER CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "response": "CLEARED FOR THE APPROACH SIX SIX FOUR",
+    "callsign": "USA664",
+    "fsm_state": "AwaitingClearance",
+    "instruction_type": "clearance",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "other",
+    "request": "O K LOWER IN THREE MILES BIZEX FIVE OH FOUR HOW S THIS",
+    "response": "O K THANKS THAT S MUCH BETTER TURN TEN DEGREES LEFT PLEASE",
+    "callsign": "GAA504",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "other",
+    "request": "YEAH WE RE WE RE DOING THAT AH THANKS A LOT THIRTY FOUR",
+    "response": "NORTHWEST THIRTY FOUR HEAVY YOU GOING TO INTERCEPT JUST AT LONER MAINTAIN SPEED NOT LESS THAN ONE SEVEN ZERO KNOTS TO RIPIT",
+    "callsign": "NWA34",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "AND THIRTY FIVE THIRTY SIX HAS TWO TWO LEFT IN SIGHT",
+    "response": "THIRTY FIVE THIRTY SIX V F R DESCENT YOUR DISCRETION PROCEED INBOUND RUNWAY TWO TWO LEFT HOLD SHORT OF TWO SEVEN TOWER IS NINETEEN ONE",
+    "callsign": "PCN3536",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "other",
+    "request": "DOWN TO FOUR AND ONE SEVENTY UNITED ONE SEVENTY FOUR HEAVY",
+    "response": "UNITED ONE SEVENTY FOUR HEAVY TURN RIGHT HEADING TWO FOUR ZERO",
+    "callsign": "UAL174",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "other",
+    "request": "THREE THOUSAND NINETY HEADING U S AIR ONE FORTY ONE",
+    "response": "U S ONE FORTY ONE TURN RIGHT HEADING ONE EIGHT ZERO DESCEND AND MAINTAIN TWO THOUSAND REPORT THE AIRPORT IN SIGHT",
+    "callsign": "USA141",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "instruction_readback",
+    "request": "U S TWELVE THIRTY EIGHT TURN LEFT HEADING THREE THREE ZERO",
+    "response": "LEFT TO THREE THREE ZERO U S AIR AH TWELVE THIRTY EIGHT",
+    "callsign": "USA1238",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "instruction_readback",
+    "request": "O K PRECISION THIRTY FIVE ZERO EIGHT ROGER MAINTAIN TWO THOUSAND PRESENT HEADING",
+    "response": "THIRTY FIVE ZERO EIGHT TWO THOUSAND PRESENT HEADING",
+    "callsign": "PCN3508",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_009",
+    "exchange_type": "other",
+    "request": "O K",
+    "response": "DELTA ONE TEN HEAVY CONTACT THE TOWER ONE ONE NINER POINT ONE SO LONG",
+    "callsign": "DAL110",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "ONE NINETY FOURTEEN THIRTY EIGHT",
+    "response": "U S AIR FOURTEEN THIRTY EIGHT TURN RIGHT HEADING ONE EIGHT ZERO",
+    "callsign": "USA1438",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "T W A SEVEN FIFTY FOUR HEAVY LEVEL FIVE THOUSAND",
+    "response": "T W A SEVEN FIFTY FOUR HEAVY BOSTON APPROACH DESCEND AND MAINTAIN THREE THOUSAND THEN REDUCE SPEED TO ONE SEVEN ZERO",
+    "callsign": "TWA754",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "ONE ZERO ZERO NORTHWEST FOUR",
+    "response": "NORTHWEST FOUR TURN RIGHT HEADING ONE EIGHT ZERO DESCEND AND MAINTAIN THREE THOUSAND",
+    "callsign": "NWA4",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "checkin_response",
+    "request": "APPROACH CLIPPER FIVE FORTY TWO WITH YOU WE RE AH JUST NOW LEVELING FIVE THOUSAND",
+    "response": "CLIPPER FIVE FORTY TWO BOSTON APPROACH THANK YOU FLY HEADING THREE SIX ZERO",
+    "callsign": "PAA542",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "ONE ZERO ZERO UNITED ONE SEVENTY FOUR HEAVY",
+    "response": "UNITED ONE SEVENTY FOUR HEAVY DESCEND AND MAINTAIN FOUR THOUSAND THEN REDUCE SPEED TO ONE SEVEN ZERO",
+    "callsign": "UAL174",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "instruction_readback",
+    "request": "U S AIR TWELVE THIRTY THREE TURN LEFT HEADING TWO EIGHT ZERO TO INTERCEPT THE LOCALIZER DESCEND AND MAINTAIN FOUR THOUSAND",
+    "response": "TWO EIGHT ZERO TO INTERCEPT THE LOCALIZER AND DOWN TO FOUR THOUSAND TWELVE THIRTY THREE",
+    "callsign": "USA1233",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "THANK YOU SIR",
+    "response": "KING AIR TWO TANGO JULIET TURN RIGHT HEADING ZERO NINE ZERO REPORT AIRPORT IN SIGHT",
+    "callsign": "N2TJ",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "BOSTON THREE OH EIGHT ECHO LIMA IS OUT OF SIX FOR FIVE",
+    "response": "GULFSTREAM THREE ZERO EIGHT ECHO LIMA BOSTON APPROACH ROGER FLY HEADING ZERO TWO ZERO",
+    "callsign": "N8EL",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "instruction_readback",
+    "request": "MIDEX TWO ZERO THREE MAINTAIN ONE SEVEN ZERO KNOTS TO RIPIT REPORT RIPIT TO TOWER ONE ONE NINER ONE THERE WILL BE TRAFFIC LANDING ON TWO TWO LEFT TO HOLD SHORT OF YOUR RUNWAY",
+    "response": "ONE SEVENTY TO RIPIT CALL THE TOWER AT RIPIT MIDEX TWO OH THREE",
+    "callsign": "MEX203",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "checkin_response",
+    "request": "APPROACH AMERICAN ONE SIXTY SIX WITH YOU LEVELING SIX THOUSAND WITH LIMA",
+    "response": "AMERICAN ONE SIXTY SIX BOSTON APPROACH ROGER FLY HEADING ONE ZERO ZERO MAINTAIN TWO ONE ZERO KNOTS",
+    "callsign": "AAL166",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_009",
+    "exchange_type": "instruction_readback",
+    "request": "U S EIGHTY FOUR MAINTAIN ONE SEVEN ZERO KNOTS TILL RIPIT REPORT IT TO THE TOWER ONE ONE NINER POINT ONE",
+    "response": "RIPIT AT NINETEEN ONE GOOD DAY",
+    "callsign": "USA84",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "CLEARED THE I L S D M E TWO SEVEN U S AIR S ONE EIGHTY TWO",
+    "response": "THANKS U S AIR ONE EIGHTY TWO MAINTAIN A HUNDRED AND SEVENTY KNOTS TO RIPIT AND YOU CAN CONTACT THE TOWER NOW ONE ONE NINER POINT ONE",
+    "callsign": "USA182",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "checkin_response",
+    "request": "BOSTON APPROACH AMERICAN AH THREE SEVENTY IS WITH YOU LEVELING AT SIX",
+    "response": "AMERICAN THREE SEVENTY BOSTON APPROACH REDUCE SPEED TO TWO ONE ZERO FLY PRESENT HEADING",
+    "callsign": "AAL370",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "NORTHWEST ONE EIGHTY TWO I MISSED ON THAT READ BACK ON THE ALTITUDE IT S INTERCEPT THE LOCALIZER AT OR ABOVE TWO THOUSAND",
+    "response": "LOCALIZER AT OR ABOVE TWO NORTHWEST NORTHWEST ONE EIGHTY TWO",
+    "callsign": "NWA182",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "OUT OF EIGHT FOR FOUR CHARLIE MIKE",
+    "response": "GULFSTREAM ONE CHARLIE MIKE TURN LEFT HEADING ZERO NINER ZERO AND DESCEND AND MAINTAIN TWO THOUSAND",
+    "callsign": "N21CM",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "other",
+    "request": "DELTA ONE TEN HEAVY DOWN TO FOUR",
+    "response": "DELTA ONE TEN HEAVY FIVE AND A HALF FROM LONER CROSS LONER AT THREE OR ABOVE CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "callsign": "DAL110",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "other",
+    "request": "GOING TO SEND NINETEEN TEN OVER TO THE TOWER",
+    "response": "U S AIR NINETEEN TEN CONTACT THE TOWER ONE ONE NINER POINT ONE SO LONG",
+    "callsign": "USA1910",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "instruction_readback",
+    "request": "MIDWAY SIX HUNDRED FLY HEADING ZERO NINER ZERO DESCEND AND MAINTAIN FIVE THOUSAND",
+    "response": "ZERO NINE ZERO DOWN FIVE MIDWAY S SIX HUNDRED",
+    "callsign": "MID600",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_009",
+    "exchange_type": "other",
+    "request": "AIR NOVA EIGHT FIFTY SIX SPEED ONE FIFTY TO RIPIT CONTACT TOWER ONE ONE NINER POINT ONE",
+    "response": "ONE NINETEEN ONE SPEED ONE FIFTY TO RIP",
+    "callsign": "ARN856",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "HELLO BOSTON U S AIR TWELVE TWENTY SIX AH TWO TEN DESCENDING TO FIVE THOUSAND WE RE OUT OF SIX POINT EIGHT",
+    "response": "U S AIR TWELVE TWENTY SIX CAUTION TURBULENCE YOU RE FOLLOWING A HEAVY D C TEN ON THE FINAL HE S AT ELEVEN O CLOCK FIVE MILES AT FIVE THOUSAND",
+    "callsign": "USA1226",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_007",
+    "exchange_type": "other",
+    "request": "V F R AT TWENTY FIVE AH WE LL DO IT BIZEX FOUR FIFTY FIVE",
+    "response": "BIZEX FOUR FIFTY FIVE V F R DESCENT YOUR DISCRETION REPORT THE AIRPORT IN SIGHT FOUR AND A HALF BEHIND YOUR TRAFFIC",
+    "callsign": "GAA455",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "other",
+    "request": "THREE THOUSAND U S S ONE EIGHTY TWO",
+    "response": "U S AIR ONE EIGHTY TWO TURN LEFT HEADING OF THREE THREE ZERO",
+    "callsign": "USA182",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "OUT OF FIVE FOR THREE NORTHWEST THIRTY FOUR HEAVY",
+    "response": "NORTHWEST THIRTY FOUR HEAVY YOU RE THREE FROM LONER TURN LEFT HEADING TWO EIGHT ZERO CROSS LONER AT THREE THOUSAND OR ABOVE CLEARED FOR THE I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "callsign": "NWA34",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "other",
+    "request": "JET LINK THIRTY EIGHT FIFTY FOUR TRAFFIC LANDING RUNWAY TWO TWO LEFT WILL HOLD SHORT OF YOUR RUNWAY CONTACT THE TOWER NOW ONE ONE NINER POINT ONE SO LONG",
+    "response": "NINETEEN ONE HAVE A GOOD DAY SIR",
+    "callsign": "BTA3854",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "other",
+    "request": "OKAY AH DESCEND AND MAINTAIN THREE THOUSAND MOHAWK THIRTEEN ZERO THREE",
+    "response": "MOHAWK THIRTEEN ZERO THREE TURN RIGHT HEADING ONE NINER ZERO INTERCEPT THE LOCALIZER DESCEND AND MAINTAIN TWO THOUSAND",
+    "callsign": "MOW1303",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "instruction_readback",
+    "request": "BIZEX THREE TWENTY THREE TURN RIGHT HEADING TWO ZERO ZERO INTERCEPT RUNWAY TWO TWO LEFT LOCALIZER",
+    "response": "TWO ZERO ZERO TO INTERCEPT BIZEX THREE TWENTY THREE",
+    "callsign": "GAA323",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "FURTHER RIGHT TWO TWO ZERO DELTA FIVE NINETY",
+    "response": "DELTA FIVE NINETY CONTINUE RIGHT HEADING TWO SIX ZERO INTERCEPT THE LOCALIZER",
+    "callsign": "DAL590",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "instruction_readback",
+    "request": "AND U S AIR TEN SIXTEEN SPEED NOW ONE NINETY OR GREATER TO RIPIT YOU RE ABOUT A MILE FROM RIPIT AND APPRECIATE AH GOOD SPEED IN TO THE AIRPORT HAVE TRAFFIC MINIMUM SPACING BEHIND YOU CONTACT THE TOWER ONE ONE NINE POINT ONE",
+    "response": "WE LL DO THAT NINETEEN U S TEN SIXTEEN GOOD DAY",
+    "callsign": "USA1016",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "speed",
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "ONE SEVENTY THEN DOWN TO TWO THOUSAND CONTINENTAL TWO SIXTY",
+    "response": "CONTINENTAL TWO SIXTY TURN RIGHT HEADING TWO FOUR ZERO INTERCEPT RUNWAY TWO SEVEN LOCALIZER",
+    "callsign": "COA260",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "THREE THREE ZERO CARE EIGHTY THREE",
+    "response": "CARE EIGHTY THREE DID YOU GET YOUR T C A CLEARANCE",
+    "callsign": "CFL83",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "instruction_readback",
+    "request": "AIR NOVA EIGHT FIFTY SIX IS THREE MILES FROM LONER CROSS LONER AT THREE THOUSAND OR ABOVE CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "response": "LONER AT THREE THOUSAND OR ABOVE CLEARED FOR THE I L S TWENTY SEVEN",
+    "callsign": "ARN856",
+    "fsm_state": "AwaitingClearance",
+    "instruction_type": "clearance",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "HEADING ZERO ONE ZERO DELTA FOUR FORTY",
+    "response": "DELTA FOUR FORTY REDUCE SPEED TO TWO ONE ZERO",
+    "callsign": "DAL440",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "other",
+    "request": "AH NORTHWEST THIRTY FOUR HEAVY ROGER",
+    "response": "NORTHWEST THIRTY FOUR HEAVY THANK YOU TRAFFIC LANDING TWO TWO LEFT TO HOLD SHORT OF YOUR RUNWAY CONTACT THE TOWER ONE ONE NINER POINT ONE",
+    "callsign": "NWA34",
+    "fsm_state": "ReadbackReceived",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "other",
+    "request": "CLEARED APPROACH MAINTAIN ONE SEVENTY TO RIPIT U S AIR SIXTEEN FIFTEEN",
+    "response": "U S AIR SIXTEEN FIFTEEN TRAFFIC LANDING RUNWAY TWO TWO LEFT WILL BE HOLDING SHORT OF YOUR RUNWAY",
+    "callsign": "USA1615",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_007",
+    "exchange_type": "instruction_readback",
+    "request": "AMERICAN ONE TWELVE HEAVY TRAFFIC LANDING RUNWAY TWO TWO LEFT WILL HOLD SHORT OF YOUR RUNWAY CONTACT TOWER ONE ONE NINER POINT ONE IF YOU WANT TO SLOW BACK AH I SEE A DELTA SEVEN TWO SEVEN AHEAD OF YOU BY THREE MILES HAS SLOWED DOWN TO ABOUT FORTY KNOTS SLOWER THAN YOU",
+    "response": "OKAY WE RE SLOWING IT DOWN RIGHT NOW THANK YOU",
+    "callsign": "AAL112",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "speed",
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "instruction_readback",
+    "request": "DELTA THREE FIFTY SIX TURN LEFT HEADING TWO NINER ZERO INTERCEPT THE RUNWAY TWO SEVEN LOCALIZER",
+    "response": "DELTA THREE FIFTY SIX TWO NINE ZERO INTERCEPT THE LOCALIZER",
+    "callsign": "DAL356",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "SHAMROCK ONE THIRTY FIVE HEAVY CONTACT THE TOWER ONE ONE NINER POINT ONE GOOD DAY",
+    "response": "GOOD DAY SIR",
+    "callsign": "SHR135",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "CLEARED I L S D M E TWO SEVEN APPROACH DELTA SEVENTEEN SEVENTY SIX",
+    "response": "DELTA SEVENTEEN SEVENTY SIX TRAFFIC LANDING RUNWAY TWO TWO LEFT WILL BE HOLDING SHORT OF YOUR RUNWAY",
+    "callsign": "DAL1776",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "other",
+    "request": "THREE HUNDRED DEGREES INTERCEPT THE LOCALIZER EIGHT ECHO LIMA",
+    "response": "GULFSTREAM THREE ZERO EIGHT ECHO LIMA THREE MILES FROM LONER CROSS LONER AT THREE THOUSAND CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "callsign": "N8EL",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "traffic_acknowledgment",
+    "request": "BIZEX SEVEN OH TWO DESCEND AND MAINTAIN THREE THOUSAND YOU LL BE FOLLOWING TRAFFIC TWELVE O CLOCK FIVE MILES A SHORT ON THE BASE LEG OUT OF THIRTY FIVE HUNDRED",
+    "response": "O K DOWN TO THREE THOUSAND AND WE RE LOOKING BIZEX SEVEN OH TWO",
+    "callsign": "GAA702",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "instruction_readback",
+    "request": "DELTA SIX FORTY EIGHT TURN LEFT HEADING THREE FIVE ZERO",
+    "response": "THREE FIVE OH DELTA SIX FORTY EIGHT",
+    "callsign": "DAL648",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "instruction_readback",
+    "request": "NORTHWEST ELEVEN SEVENTY EIGHT DESCEND AND MAINTAIN THREE THOUSAND",
+    "response": "THREE THOUSAND ELEVEN SEVENTY EIGHT",
+    "callsign": "NWA1178",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "other",
+    "request": "THREE THREE ZERO AMERICAN SEVEN THIRTY SIX",
+    "response": "AMERICAN SEVEN THIRTY SIX DESCEND AND MAINTAIN TWO THOUSAND",
+    "callsign": "AAL736",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "ROGER",
+    "response": "PRECISION THIRTY FIVE THIRTEEN REDUCE SPEED TO ONE SEVEN ZERO",
+    "callsign": "PCN3513",
+    "fsm_state": "ReadbackReceived",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_002",
+    "exchange_type": "instruction_readback",
+    "request": "CONTINENTAL THREE FORTY FOUR KEEP YOUR SPEED UP DESCEND AND MAINTAIN THREE THOUSAND",
+    "response": "THREE THOUSAND CONTINENTAL THREE FORTY FOUR",
+    "callsign": "COA344",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "DOWN TO THREE POINT FIVE",
+    "response": "JET LINK THIRTY EIGHT ELEVEN DESCEND AND MAINTAIN V F R AT TWO THOUSAND FIVE HUNDRED",
+    "callsign": "BTA3811",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "instruction_readback",
+    "request": "TRUMP TEN EIGHTY YOUR PRESENT HEADING DESCEND AND MAINTAIN FOUR THOUSAND",
+    "response": "DESCEND TO FOUR TRUMP TEN EIGHTY",
+    "callsign": "TPS1080",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "other",
+    "request": "RIGHT TO TWO FIFTY INTERCEPT THE LOCALIZER TWO SEVEN MIDEX TWO OH SEVEN",
+    "response": "MIDEX TWO OH SEVEN IS SIX MILES FROM RIPIT MAINTAIN AT OR ABOVE TWO THOUSAND TIL ESTABLISHED ON THE LOCALIZER CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "callsign": "MEX207",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "instruction_readback",
+    "request": "AMERICAN ONE TWELVE HEAVY ROGER MAINTAIN ONE SEVEN ZERO KNOTS TO RIPIT PLEASE",
+    "response": "ONE SEVENTY TO RIPIT",
+    "callsign": "AAL112",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "THREE HUNDRED ON THE HEADING JET LINK THIRTY EIGHT ZERO SIX",
+    "response": "JET LINK THIRTY EIGHT OH SIX TRAFFIC THREE THIRTY FOUR MILES AND JUST THREE MILES NOW S HEAVY AIR BUS AH I WAS GOING TO TRY TO GET YOU IN AHEAD OF HIM CAN YOU KEEP YOUR SPEED UP AT A HUNDRED AND NINETY TIL FIVE OUT",
+    "callsign": "BTA3806",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "OKAY AH THAT WAS TWO THOUSAND FOR US",
+    "response": "BIZEX THREE HUNDRED AFFIRMATIVE",
+    "callsign": "GAA300",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "instruction_readback",
+    "request": "NERA THIRTY SEVEN SIXTY EIGHT TURN BACK LEFT HEADING ZERO ONE ZERO",
+    "response": "ZERO ONE ZERO THIRTY SEVEN SIXTY EIGHT",
+    "callsign": "NERA3768",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "CONTINENTAL TWO SIXTY IS WITH YOU AT SIX SLOWING TO TWO TEN",
+    "response": "CONTINENTAL TWO SIXTY BOSTON APPROACH AH SPEED YOUR DISCRETION TURN LEFT HEADING ZERO NINER ZERO",
+    "callsign": "COA260",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_008",
+    "exchange_type": "instruction_readback",
+    "request": "BIZEX FOUR ELEVEN IT IS ONE SEVENTY OR GREATER TILL THE MARKER",
+    "response": "AH ONE SEVENTY OR GREATER GREAT",
+    "callsign": "GAA411",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "speed",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_007",
+    "exchange_type": "other",
+    "request": "IN SIGHT",
+    "response": "BIZEX FOUR SIXTY FIVE CROSS TEN D M E AT OR ABOVE THREE THOUSAND CLEARED VISUAL APPROACH RUNWAY TWO SEVEN FOLLOW THE SEVEN TWENTY SEVEN",
+    "callsign": "GAA465",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_006",
+    "exchange_type": "instruction_readback",
+    "request": "DELTA FIVE EIGHTY NINE IS TWO FROM LONER CROSS LONER THREE OR ABOVE CLEARED I L S D M E TWO SEVEN APPROACH AND ONE SEVEN ZERO KNOTS TO RIPIT",
+    "response": "ONE SEVENTY TO RIPIT AH CLEARED FOR APPROACH AH DELTA FIVE EIGHTY NINE",
+    "callsign": "DAL589",
+    "fsm_state": "AwaitingClearance",
+    "instruction_type": "clearance",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "AH BOSTON APPROACH U S AIR FIFTEEN TWENTY FOUR SEVEN AND A HALF FOR SIX THOUSAND",
+    "response": "U S AIR FIFTEEN TWENTY FOUR BOSTON GOOD AFTERNOON DESCEND AND MAINTAIN FOUR THOUSAND",
+    "callsign": "USA1524",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "APPROACH CONTINENTAL THREE EIGHTY EIGHT POINT FOR FIVE THOUSAND",
+    "response": "CONTINENTAL THREE EIGHTY BOSTON APPROACH FLY HEADING ZERO TWO ZERO",
+    "callsign": "COA380",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_004",
+    "exchange_type": "other",
+    "request": "TWO NINE ZERO TO INTERCEPT THE LOCALIZER CONTINENTAL THREE EIGHTY",
+    "response": "CONTINENTAL THREE EIGHTY REDUCE SPEED TO ONE SEVEN ZERO",
+    "callsign": "COA380",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "other",
+    "request": "DELTA SIX FORTY EIGHT BOSTON REDUCE SPEED TO TWO ONE ZERO",
+    "response": "TWO TEN DELTA SIX FORTY EIGHT",
+    "callsign": "DAL648",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_005",
+    "exchange_type": "instruction_readback",
+    "request": "CONTINENTAL THREE FORTY FOUR TURN LEFT HEADING THREE ZERO ZERO INTERCEPT RUNWAY TWO SEVEN LOCALIZER DESCEND AND MAINTAIN TWO THOUSAND",
+    "response": "OKAY WE LL DO ALL THAT CONTINENTAL THREE FORTY FOUR",
+    "callsign": "COA344",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": true
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "[UNINTELLIGIBLE] TWENTY FIFTY EIGHT IS HERE FIVE THOUSAND REDUCING SPEED",
+    "response": "U S AIR TWENTY FIFTY EIGHT REDUCE SPEED TO ONE SEVEN ZERO",
+    "callsign": "USA2058",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "instruction_readback",
+    "request": "UNITED TEN NINETY SIX THREE MILES FROM LONER TURN LEFT HEADING TWO NINER ZERO CROSS LONER AT OR ABOVE THREE THOUSAND AND CLEARED I L S D M E RUNWAY TWO SEVEN APPROACH",
+    "response": "OKAY AH LEFT TO TWO NINE ZERO LONER AT OR ABOVE THREE FOR UNITED TEN NINETY SIX",
+    "callsign": "UAL1096",
+    "fsm_state": "AwaitingClearance",
+    "instruction_type": "clearance",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "other",
+    "request": "AMERICAN ONE SIXTY SIX ROGER",
+    "response": "AMERICAN ONE SIXTY SIX FLY HEADING ONE TWO ZERO",
+    "callsign": "AAL166",
+    "fsm_state": "ReadbackReceived",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_008",
+    "exchange_type": "other",
+    "request": "NORTHWEST EIGHTEEN SEVENTY SIX CONTACT THE TOWER ONE ONE NINER POINT ONE GOOD DAY",
+    "response": "NINETEEN ONE GOOD DAY",
+    "callsign": "NWA1876",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "AND BOSTON BIZEX FOUR EIGHTEEN IS AH FIVE THOUSAND",
+    "response": "BIZEX FOUR EIGHTEEN BOSTON APPROACH ROGER",
+    "callsign": "GAA418",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_007",
+    "exchange_type": "other",
+    "request": "CONTINENTAL THREE SIXTY YOU CAN SLOW IT BACK AT YOUR DISCRETION THERE S NOBODY TO FOLLOW CONTACT THE TOWER ONE ONE NINER POINT ONE GOOD NIGHT",
+    "response": "THREE SIXTY NINETEEN ONE GOOD DAY THANK YOU",
+    "callsign": "COA360",
+    "fsm_state": "Init",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_003",
+    "exchange_type": "instruction_readback",
+    "request": "U S ONE NINETY THANK YOU PRECISION THIRTY FIVE SEVENTY DESCEND AND MAINTAIN THREE THOUSAND",
+    "response": "U S AIR TEN AH ONE NINETY HAS THE TEN ELEVEN",
+    "callsign": "USA190",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "altitude",
+    "readback_correct": false
+  },
+  {
+    "exchange_id": "ex_000",
+    "exchange_type": "other",
+    "request": "GOOD AFTERNOON BOSTON NERA THIRTY SEVEN SIXTY EIGHT AH LEVELING FOUR THOUSAND ZERO TWO ZERO ASSIGNED",
+    "response": "NERA THIRTY SEVEN SIXTY EIGHT BOSTON APPROACH ROGER",
+    "callsign": "NERA3768",
+    "fsm_state": "AwaitingReadback",
+    "instruction_type": null,
+    "readback_correct": null
+  },
+  {
+    "exchange_id": "ex_001",
+    "exchange_type": "instruction_readback",
+    "request": "COMMUTER NINE FIFTEEN FLY HEADING AH ONE NINER ZERO AND INTERCEPT THE LOCALIZER DESCEND AND MAINTAIN THREE THOUSAND",
+    "response": "ONE NINE ZERO WE LL INTERCEPT THE LOCALIZER DOWN TO THREE THOUSAND COMMUTER NINE FIFTEEN",
+    "callsign": "COM915",
+    "fsm_state": "ClearanceIssued",
+    "instruction_type": "heading",
+    "readback_correct": false
+  }
+]
