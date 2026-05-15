@@ -35,6 +35,7 @@ Clone the repository and install the required dependencies:
 
 ```bash
 git clone https://github.com/Purdue-AIDA3/ATC_Chatbot
+cd ATC_Chatbot  
 pip install -r requirements.txt
 ```
 
