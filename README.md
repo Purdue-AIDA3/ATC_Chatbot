@@ -38,6 +38,14 @@ git clone https://github.com/Purdue-AIDA3/ATC_Chatbot
 pip install -r requirements.txt
 ```
 
+### Running the Frontend
+
+Set OpenAI key and HuggingFace token in config.json:
+
+```bash
+python frontend.py
+```
+
 ### Training
 
 Replace `[MODEL]` with `GPT`, `LLAMA`, or `QWEN` in the filenames as needed.
