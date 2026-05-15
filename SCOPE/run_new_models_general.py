@@ -11,6 +11,17 @@ Conditions per model:
 
 Usage:
   python run_new_models_general.py \
+    --models llama qwen --conditions C2 C3 C11 C4 \
+    --domain smcp \
+    --grammar G_SMCP.lark \
+    --vocab_path vocab_SMCP.json \
+    --phrase_path ngram_whitelist_SMCP.json \
+    --data smcp_pairs.json --test_data smcp_test.json \
+    --train_script scope_train_general.py \
+    --gcd_script evaluate_gcd_general.py \
+    --output_root results_maritime
+
+  python run_new_models_general.py \
     --models llama qwen \
     --conditions C2 C3 C11 C4 \
     --domain atc \
@@ -128,7 +139,7 @@ def run_condition(cond_id, model_key, model_info, args, out_root):
         return load_metrics(cond_dir / "test_results.json")
 
     if cond["kind"] == "gcd":
-        # GCD: evaluate_gcd.py on the SFT checkpoint
+        # GCD: evaluate_gcd_general.py on the SFT checkpoint
         src_ckpt = model_dir / cond["source"] / "best"
         if not src_ckpt.exists():
             print(f"\n  ✗ {label} — source checkpoint {src_ckpt} not found")
@@ -219,10 +230,10 @@ def main():
     parser.add_argument("--test_data",    default="atc_test.json")
     parser.add_argument("--train_script", default="scope_train_general.py")
     parser.add_argument("--gcd_script",   default="evaluate_gcd_general.py")
-    parser.add_argument("--grammar",      default="G_ATC_v2.lark")
+    parser.add_argument("--grammar",      default="G_ATC.lark")
     parser.add_argument("--vocab_path",   default="vocab_ATC.json",
                         help="Vocabulary whitelist JSON (V_domain)")
-    parser.add_argument("--phrase_path",  default="ngram_whitelist_ATC_v2.json",
+    parser.add_argument("--phrase_path",  default="ngram_whitelist_ATC.json",
                         help="N-gram whitelist JSON (P_domain)")
     parser.add_argument("--domain",       default="atc",
                         choices=["atc", "smcp"],

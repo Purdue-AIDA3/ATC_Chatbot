@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
 """
-evaluate_gcd.py — Grammar-Constrained Decoding evaluation (Condition C4)
+evaluate_gcd_general.py — Grammar-Constrained Decoding evaluation (Condition C4)
 
 Applies Earley-based valid-next-token masking at inference time to a
-trained SFT checkpoint and evaluates compliance on the test set.
+trained SFT or vanilla checkpoint and evaluates compliance on the test set.
 This implements the GCD baseline from Geng et al. (EMNLP 2023) using
-G_ATC_v2.lark as the constraint grammar.
+G_ATC.lark as the constraint grammar.
 
 Usage:
     # Evaluate GCD on the SFT checkpoint
-    python evaluate_gcd.py \
+    python evaluate_gcd_general.py \
         --model  results/C2/best \
         --data   atc_test.json \
-        --grammar G_ATC_v2.lark \
+        --grammar G_ATC.lark \
         --output results/C4
 
     # Evaluate GCD on vanilla GPT-2 (no fine-tuning)
-    python evaluate_gcd.py \
+    python evaluate_gcd_general.py \
         --model  gpt2-large \
         --data   atc_test.json \
-        --grammar G_ATC_v2.lark \
-        --output results/C4_vanilla
+        --grammar G_ATC.lark \
+        --output results/C4a
 """
 
 import json, re, argparse, os
@@ -37,7 +37,7 @@ from transformers import (AutoTokenizer, AutoModelForCausalLM,
 # Default paths resolve relative to this script's directory
 _SCRIPT_DIR = Path(__file__).parent
 VOCAB_PATH  = _SCRIPT_DIR / "vocab_ATC.json"
-PHRASE_PATH = _SCRIPT_DIR / "ngram_whitelist_ATC_v2.json"
+PHRASE_PATH = _SCRIPT_DIR / "ngram_whitelist_ATC.json"
 
 def load_whitelist(vocab_path):
     with open(vocab_path) as f:

@@ -5,7 +5,18 @@ Runs all 13 experimental conditions sequentially, evaluates on test set,
 saves results, and produces comparison table + plots.
 
 Usage:
-    python run_all_conditions.py \
+    python run_all_conditions_general.py \
+        --data smcp_pairs.json --test_data smcp_test.json \
+        --model gpt2-large --domain smcp \
+        --grammar G_SMCP.lark \
+        --vocab_path vocab_SMCP.json \
+        --phrase_path ngram_whitelist_SMCP.json \
+        --script scope_train_general.py \
+        --gcd_script evaluate_gcd_general.py \
+        --output_root results_maritime/gpt \
+        --conditions C2 C3 C11 C4
+
+    python run_all_conditions_general.py \
         --data atc_pairs.json \
         --model gpt2-large \
         --epochs 5 \
@@ -14,7 +25,7 @@ Usage:
         --output_root results/
 
     # To resume from a partial run (skip completed conditions):
-    python run_all_conditions.py --resume
+    python run_all_conditions_general.py --resume
 """
 
 import os, sys, json, time, argparse, subprocess
@@ -133,10 +144,20 @@ def make_conditions(args):
          "gcd",
          {"ckpt_source": "C2"}),   # apply GCD to C2/best
 
+        ("C4a",  "GCD_Vanilla",
+         "Grammar-Constrained Decoding on Vanilla checkpoint",
+         "gcd",
+         {"ckpt_source": "C1"}),   # apply GCD to C1/best
+
         ("C4b", "SCOPE+GCD",
          "Grammar-Constrained Decoding on SCOPE-full checkpoint",
          "gcd",
          {"ckpt_source": "C11"}),  # apply GCD to C11/best
+
+        ("C4c", "SCOPE+GCD_Vanilla",
+         "Grammar-Constrained Decoding+Vanilla on SCOPE-full checkpoint",
+         "gcd",
+         {"ckpt_source": "C11"}),  # apply GCD_vanilla to C11/best
 
         # ── GAD inference-time baselines (Park et al. NeurIPS 2024) ─────────
         ("C4_GAD",  "GAD (SFT)",
@@ -233,7 +254,9 @@ def run_gcd_condition(cond_id, label, description, output_root,
     """
     Run GCD evaluation on any trained checkpoint.
     C4:  GCD on SFT checkpoint  (ckpt_path = results/C2/best)
+    C4a:  GCD on Vanilla checkpoint  (ckpt_path = results/C1/best)
     C4b: GCD on SCOPE-full ckpt (ckpt_path = results/C11/best)
+    C4c: GCD_vanilla on SCOPE-full ckpt (ckpt_path = results/C11/best)
     """
     out_dir   = Path(output_root) / cond_id
     done_flag = out_dir / "DONE"
@@ -345,7 +368,7 @@ def run_gad_condition(cond_id, label, description, output_root,
 def evaluate_condition(cond_id, label, out_dir, data_path,
                        script_path, test_split_path,
                        vocab_path="vocab_ATC.json",
-                       phrase_path="ngram_whitelist_ATC_v2.json",
+                       phrase_path="ngram_whitelist_ATC.json",
                        domain="atc"):
     """
     Evaluate one condition on the test set and return metrics dict.
@@ -371,7 +394,7 @@ def evaluate_condition(cond_id, label, out_dir, data_path,
         return r
 
     # GCD/GAD conditions: results written by their evaluators
-    if cond_id in ("C4", "C4a", "C4b"):
+    if cond_id in ("C4", "C4a", "C4b", "C4c"):
         print(f"  ⚠  {cond_id} (GCD): no test_results.json found. "
               f"Did run_gcd_condition complete?")
         return None
@@ -401,12 +424,12 @@ def evaluate_condition(cond_id, label, out_dir, data_path,
 
 def _eval_inline(model_path, test_split_path, results_path, label,
                  vocab_path="vocab_ATC.json",
-                 phrase_path="ngram_whitelist_ATC_v2.json",
+                 phrase_path="ngram_whitelist_ATC.json",
                  domain="atc"):
     """Inline evaluation — import training module functions directly."""
     import importlib.util, torch, json
 
-    # Use scope_train_general (domain-agnostic) — same directory as this runner
+    # Use scope_train_general (domain-agnostic)
     script_file = Path(__file__).resolve().parent / "scope_train_general.py"
     spec = importlib.util.spec_from_file_location("scope_train", script_file)
     scope = importlib.util.module_from_spec(spec)
@@ -486,24 +509,34 @@ GREY_MED     = "#AAAAAA"
 GREY_DARK    = "#444444"
 
 # Condition display order and colour coding
-COND_ORDER = ["C1","C2","C5","C7","C8","C9","C11"]
+COND_ORDER = ["C1","C2","C3","C4","C4a","C5","C7","C8","C9","C11","C4b","C4c"]
 COND_LABELS = {
     "C1":  "Vanilla",
     "C2":  "SFT",
+    "C3":  "DPO",
+    "C4":  "GCD",
+    "C4a":  "GCD_vanilla",
     "C5":  "SCOPE-tok",
     "C7":  "SCOPE-phr",
     "C8":  "SCOPE-cfg",
     "C9":  "SCOPE-2L",
     "C11": "SCOPE-full",
+    "C4b":  "SCOPE+GCD",
+    "C4c":  "SCOPE+GCD_vanilla",
 }
 COND_COLORS = {
     "C1":  GREY_MED,
     "C2":  GREY_DARK,
+    "C3":  "#A8860B",
+    "C4":  "#C8860B",
+    "C4a":  "#B7760B",
     "C5":  "#B8860B",
     "C7":  "#8B6914",
     "C8":  "#A0522D",
     "C9":  "#CD853F",
     "C11": PURDUE_GOLD,
+    "C4b":  "#CB860B",
+    "C4c":  "#A2560B",
 }
 
 
@@ -755,6 +788,7 @@ FULL_COND_LABELS = {
     "C2":  "Standard SFT",
     "C3":  "DPO",
     "C4":  "GCD (on SFT ckpt.)",
+    "C4a":  "GCD (on vanilla ckpt.)",
     "C5":  "SCOPE-tok only",
     "C6":  "SCOPE-phr (REINFORCE)",
     "C7":  "SCOPE-phr (GRPO)",
@@ -762,6 +796,8 @@ FULL_COND_LABELS = {
     "C9":  "SCOPE-2L (tok+phr)",
     "C10": "SCOPE (REINFORCE)",
     "C11": "SCOPE-full (proposed)",
+    "C4b":  "SCOPE+GCD (on SFT ckpt.)",
+    "C4c":  "SCOPE+GCD_vanilla (on vanilla ckpt.)",
     "C12": "GPT-5.4 zero-shot",
     "C13": "GPT-5.4 five-shot",
 }
@@ -769,8 +805,8 @@ FULL_COND_LABELS = {
 def write_results_table(all_results, output_root):
     """Write CSV and LaTeX results table."""
     rows = []
-    cond_order = ["C1","C2","C3","C4","C5","C6","C7",
-                  "C8","C9","C10","C11","C12","C13"]
+    cond_order = ["C1","C2","C3","C4","C4a","C5","C6","C7",
+                  "C8","C9","C10","C11","C4b","C4c","C12","C13"]
     for cid in cond_order:
         r = all_results.get(cid)
         if r is None:
@@ -833,10 +869,10 @@ def write_results_table(all_results, output_root):
         f.write("\\midrule\n")
 
         sections = [
-            ("Baselines", ["C1","C2","C3","C4"]),
+            ("Baselines", ["C1","C2","C3","C4","C4a"]),
             ("Single-level ablation", ["C5","C6","C7","C8"]),
             ("Two-level ablation", ["C9","C10"]),
-            ("Proposed method", ["C11"]),
+            ("Proposed method", ["C11","C4b","C4c"]),
             ("Closed-weight inference", ["C12","C13"]),
         ]
         for sec_label, cids in sections:
@@ -873,7 +909,7 @@ def print_summary_table(all_results):
     print("="*65)
     print(f"{'Cond':<6} {'Method':<28} {'C_tok':>7} {'C_phr':>7} {'C_cfg':>7}")
     print("-"*65)
-    for cid in ["C1","C2","C5","C7","C8","C9","C11"]:
+    for cid in ["C1","C2","C3","C4","C4a","C5","C7","C8","C9","C11","C4b","C4c"]:
         r = all_results.get(cid)
         label = FULL_COND_LABELS.get(cid, cid)[:28]
         if r:
@@ -904,21 +940,21 @@ def main():
     parser.add_argument("--seed",        type=int,   default=42)
     parser.add_argument("--output_root", default="results")
     parser.add_argument("--plots_dir",   default="plots")
-    parser.add_argument("--script",      default="scope_train_v2.py")
-    parser.add_argument("--gcd_script",  default="evaluate_gcd.py",
-                        help="Path to evaluate_gcd.py")
-    parser.add_argument("--grammar",     default="G_ATC_v2.lark",
+    parser.add_argument("--script",      default="scope_train_general.py")
+    parser.add_argument("--gcd_script",  default="evaluate_gcd_general.py",
+                        help="Path to evaluate_gcd_general.py")
+    parser.add_argument("--grammar",     default="G_ATC.lark",
                         help="Lark grammar file for GCD (C4)")
     parser.add_argument("--vocab_path",  default="vocab_ATC.json",
                         help="Vocabulary whitelist JSON (V_domain)")
-    parser.add_argument("--phrase_path", default="ngram_whitelist_ATC_v2.json",
+    parser.add_argument("--phrase_path", default="ngram_whitelist_ATC.json",
                         help="N-gram whitelist JSON (P_domain)")
     parser.add_argument("--domain",      default="atc",
                         choices=["atc", "smcp"],
                         help="Domain for system prompt (atc or smcp)")
     parser.add_argument("--gad_script",  default="evaluate_gad.py",
                         help="Path to evaluate_gad.py (Park et al. NeurIPS 2024)")
-    parser.add_argument("--gad_grammar", default="G_ATC_v2.ebnf",
+    parser.add_argument("--gad_grammar", default="G_ATC.ebnf",
                         help="GBNF grammar file for GAD (not Lark format)")
     parser.add_argument("--dpo_beta",    type=float, default=0.1,
                         help="DPO beta hyperparameter (C3)")
@@ -967,7 +1003,7 @@ def main():
                 continue
 
             if kind == "gcd":
-                # extra_args is a dict: {"ckpt_source": "C2"} or {"ckpt_source": "C11"}
+                # extra_args is a dict: {"ckpt_source": "C2"}, {"ckpt_source": "C1"} or {"ckpt_source": "C11"}
                 src_cond = (extra_args or {}).get("ckpt_source", "C2")
                 ckpt_path = output_root / src_cond / "best"
                 run_gcd_condition(
