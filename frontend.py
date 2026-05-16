@@ -75,7 +75,7 @@ except Exception as e:
 model_weights_path = "./gpt2-large774M-atc-clm-loss.pth"
 # Download a model from huggingface
 model_weights_path = hf_hub_download(
-    repo_id="FemiLanre/GPT-2-Large-Causal-Finetuned-on-ATC", 
+    repo_id="Sabine-Brunswicker/GPT-2-Large-Finetuned-on-ATC", 
     filename="gpt2-large774M-atc-clm-loss.pth",
     #use_auth_token=True
 )
@@ -237,7 +237,7 @@ def process_voice_request(audio, asr_model_choice, lm_model_choice):
             #model_weights_path = "./gpt2-large774M-atc-with-grammar-loss.pth"
             #model_weights_path = "./gpt2-large774M-atc-clm-loss.pth"
             model_weights_path = hf_hub_download(
-                repo_id="FemiLanre/GPT-2-Large-Causal-Finetuned-on-ATC", 
+                repo_id="Sabine-Brunswicker/GPT-2-Large-Finetuned-on-ATC", 
                 filename="gpt2-large774M-atc-clm-loss.pth",
                 #use_auth_token=True
             )
