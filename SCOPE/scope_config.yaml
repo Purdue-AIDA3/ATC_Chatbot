@@ -1,0 +1,109 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# SCOPE Training Configuration — scope_config.yaml
+# Edit this file to change hyperparameters, model, curriculum, and conditions.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ── Run identity ───────────────────────────────────────────────────────────────
+run_name:    "scope_llama_c11"          # used in TensorBoard and log filenames
+output_dir:  "scope_output"
+seed:        42
+seeds:       [42, 123, 456]             # list of seeds for multi-seed replication
+
+# ── Model ──────────────────────────────────────────────────────────────────────
+model_name:  "meta-llama/Llama-3.1-8B"
+domain:      "atc"                      # "atc" | "smcp"
+use_chat_template:       false
+gradient_checkpointing:  true
+
+# ── Artefact paths (FORMAT B — updated artefacts) ─────────────────────────────
+vocab_path:    "vocab_ATC_clean.json"
+phrase_path:   "ngram_whitelist_ATC_clean.json"
+grammar_path:  "G_ATC_unified.lark"
+
+# ── Data paths (FORMAT B — atc_pairs_enriched.jsonl) ─────────────────────────
+data_path:    "atc_pairs_enriched.jsonl"   # FORMAT B JSONL with quality_tier
+# Pre-split overrides (leave blank to use data_path with in-script split)
+train_data:   ""
+val_data:     ""
+test_data:    ""
+
+# ── Data curriculum strategy ──────────────────────────────────────────────────
+# "A"  — Two-phase: Phase 1 = gold+silver targets, Phase 2 = all (bronze added)
+# "B"  — Weighted loss: single run, tier CE weights (gold×3, silver×1.5, bronze×1)
+# "C"  — Silver+gold only: bronze pairs excluded from training entirely
+data_curriculum: "B"
+
+# Tier weights for strategy B (ignored for A and C)
+tier_weight_gold:   3.0
+tier_weight_silver: 1.5
+tier_weight_bronze: 1.0
+
+# Phase split for strategy A (fraction of total epochs)
+data_phase1_frac:   0.5   # first half: gold+silver only; second half: all
+
+# ── Loss weights (λ) ──────────────────────────────────────────────────────────
+# NOTE: lambda_phr increased from 0.3→0.5 because P_ATC shrank from 46,990→1,169
+# n-grams (specification-first construction); C_phr scores lower per utterance,
+# so the signal needs to be amplified to maintain training effect.
+# Observe GradNorm-adjusted values in TensorBoard to validate.
+lambda_ce:   1.0
+lambda_tok:  0.5
+lambda_phr:  0.5    # was 0.3 — increased for smaller specification-first P_ATC
+lambda_cfg:  0.2
+
+# ── Loss curriculum (orthogonal to data curriculum) ───────────────────────────
+# Phase 1: CE only  →  Phase 2: CE+tok  →  Phase 3: full
+loss_curriculum:        true
+loss_curriculum_phase1: 0.333   # fraction of epochs in Phase 1
+loss_curriculum_phase2: 0.667   # fraction up to end of Phase 2
+loss_curriculum_ramp:   50      # steps to linearly ramp new lambdas (0=hard switch)
+
+# ── Ablation flags (which compliance losses to include) ───────────────────────
+use_ltok: true
+use_lphr: true
+use_lcfg: true
+
+# ── Training hyperparameters ──────────────────────────────────────────────────
+epochs:        5
+batch_size:    4
+grad_accum:    4           # effective batch = batch_size × grad_accum = 16
+lr:            2.0e-5
+warmup_ratio:  0.05        # 5% of total steps for warmup
+warmup_steps:  0           # overridden by warmup_ratio if > 0
+grad_clip:     1.0
+max_length:    512
+max_new_tok:   80          # increased from 64 — ICAO utterances can be longer
+M_samples:     4           # GRPO samples per step
+
+# ── GradNorm — dynamic lambda rebalancing ─────────────────────────────────────
+use_gradnorm:        true
+gradnorm_alpha:      1.5
+gradnorm_update_freq: 20
+
+# ── DPO ───────────────────────────────────────────────────────────────────────
+use_dpo:       false
+dpo_beta:      0.1
+dpo_ref_model: ""
+
+# ── Checkpoint selection ──────────────────────────────────────────────────────
+checkpoint_metric:       "c_bar"   # "c_bar" | "c_tok"
+early_stop_patience:     2         # epochs without improvement (0=disabled)
+hallucination_threshold: 0.10
+
+# ── BERTScore ─────────────────────────────────────────────────────────────────
+bertscore_model:  "bert-base-uncased"
+bertscore_weight: 0.0     # 0=disabled; 0.2 = 0.8×C_bar + 0.2×BERTScore
+finetune_bert:    false
+bert_mlm_epochs:  3
+bert_mlm_batch:   16
+bert_mlm_lr:      2.0e-5
+
+# ── TensorBoard and logging ───────────────────────────────────────────────────
+tensorboard_dir:    "runs"          # relative to output_dir
+log_step_freq:      10              # log to TensorBoard every N steps
+csv_log_steps:      true            # write step-level CSV (loss components)
+csv_log_epochs:     true            # write epoch-level CSV (metrics)
+log_grammar_rules:  true            # track which G_ATC rules drive C_cfg failures
+
+# ── Multi-GPU ─────────────────────────────────────────────────────────────────
+use_8bit_adam: false   # auto-enabled if 2+ GPUs detected
